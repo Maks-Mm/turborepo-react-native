@@ -1,14 +1,12 @@
-"use client";
-
-import { Button } from "@repo/ui";
-
-import styles from "../styles/index.module.css";
+// apps/web/app/page.tsx
+import { Nav, Hero, Footer } from "@repo/ui";
 
 export default function Web() {
   return (
-    <div className={styles.container}>
-      <h1>Web</h1>
-      <Button onClick={() => console.log("Pressed!")} text="Boop" />
+    <div>
+      <Nav />
+      <Hero />
+      <Footer />
     </div>
   );
 }

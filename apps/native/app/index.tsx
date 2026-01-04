@@ -1,33 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Button } from "@repo/ui";
+// apps/native/app/index.tsx
+import { View, ScrollView } from 'react-native';
+// This pulls the components from your packages/ui folder
+import { Nav, Hero, Footer,Section } from '@repo/ui'; 
 
-export default function Native() {
+export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Native</Text>
-      <Button
-        onClick={() => {
-          console.log("Pressed!");
-          alert("Pressed!");
-        }}
-        text="Boop"
-      />
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <Nav /> 
+      <ScrollView>
+        <Hero />
+        <Section />
+        {/* Other page content goes here */}
+        <Footer />
+      </ScrollView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  header: {
-    fontWeight: "bold",
-    marginBottom: 20,
-    fontSize: 36,
-  },
-});
