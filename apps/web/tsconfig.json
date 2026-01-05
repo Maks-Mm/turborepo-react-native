@@ -1,36 +1,22 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@repo/typescript-config/base.json",
+  "extends": "@repo/typescript-config/nextjs",
   "compilerOptions": {
-    "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "module": "esnext",
-    "noEmit": true,
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "target": "esnext",
-    "incremental": true,
-    "types": [],
-    "typeRoots": [],
-    "skipLibCheck": true,
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@repo/ui": ["../../packages/ui/src"],
+      "@repo/ui/*": ["../../packages/ui/src/*"]
+    }
   },
   "include": [
-    "src",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

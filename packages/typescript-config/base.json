@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
   "compilerOptions": {
     "composite": false,
     "declaration": true,
@@ -13,10 +14,7 @@
     "noUnusedParameters": false,
     "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "strict": true,
-    "types": [],       
-    "typeRoots": [],   
-    "plugins": []
+    "strict": true
   },
   "exclude": ["node_modules"]
 }

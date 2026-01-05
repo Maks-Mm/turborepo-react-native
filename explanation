@@ -1,3 +1,6 @@
-the package is a traditional place for developin files and folders witch we export to native block index
+the package is a traditional place for developin files and folders witch we export to native block 
+// apps/native/app/index.tsx ,
+// apps/web/app/page.tsx,
+// packages/ui/src/index.tsx,
 
 the local host 3000 ist web version to look what is developing , http://localhost:8081/ for App smartphone simulation 

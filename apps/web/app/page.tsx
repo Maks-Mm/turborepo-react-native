@@ -1,12 +1,17 @@
 // apps/web/app/page.tsx
-import { Nav, Hero, Footer } from "@repo/ui";
+import { Header, Nav, Hero, Footer, Section } from "@repo/ui";
+import { LanguageProvider } from "@repo/ui";
 
 export default function Web() {
   return (
-    <div>
-      <Nav />
-      <Hero />
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <Header/>
+        <Nav />
+        <Hero />
+        <Section />
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 }

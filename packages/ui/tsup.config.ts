@@ -1,15 +1,12 @@
-import { defineConfig, Options } from "tsup";
+// packages/ui/tsup.config.ts
+import { defineConfig } from 'tsup';
 
-export default defineConfig((options: Options) => ({
-  entry: {
-    index: "src/index.tsx",
-  },
-  banner: {
-    js: "'use client'",
-  },
-  clean: true,
-  format: ["cjs", "esm"],
-  external: ["react"],
+export default defineConfig({
+  entry: ['src/index.tsx'], // Make sure this points to your index file
+  format: ['cjs', 'esm'],
+  external: ['react', 'react-dom', 'react-native'],
   dts: true,
-  ...options,
-}));
+  splitting: false,
+  sourcemap: true,
+  clean: true,
+});
