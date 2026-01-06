@@ -1,17 +1,20 @@
 // packages/ui/src/contexts/LanguageContext.tsx
-"use client"; // <-- DIESE ZEILE HINZUFÜGEN
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+"use client";
+
+import React, { createContext, useContext, useState, ReactNode } from "react";
+
+type Language = "en" | "de" | "pl";
 
 interface LanguageContextType {
-  language: string;
-  setLanguage: (lang: string) => void;
+  language: Language;
+  setLanguage: (lang: Language) => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState('pl');
+  const [language, setLanguage] = useState<Language>("en");
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
@@ -21,9 +24,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 }
 
 export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+  const ctx = useContext(LanguageContext);
+  if (!ctx) {
+    throw new Error("useLanguage must be used within LanguageProvider");
   }
-  return context;
+  return ctx;
 }
