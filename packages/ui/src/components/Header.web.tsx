@@ -1,4 +1,4 @@
-//packages/ui/src/components/Header.tsx
+//packages/ui/src/components/Header.web.tsx
 "use client";
 import React, { useState } from 'react';
 
@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        
+
         {/* Logo */}
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-red-600 rounded-lg flex items-center justify-center">
@@ -22,7 +22,7 @@ const Header = () => {
 
         {/* Actions */}
         <div className="flex items-center gap-4">
-          
+
           {/* Language Selector */}
           <div className="relative">
             <button
