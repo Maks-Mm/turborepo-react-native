@@ -1,0 +1,997 @@
+nor erros ,go we nex : Doch — **es gibt keine große, wirklich **einfach nutzbare All-in-One-App speziell für polnische Geschäftsleute in Deutschland, die rechtlich sicher, benutzerfreundlich und maßgeschneidert auf ihre Bedürfnisse ist. Und genau dort liegt eine echte Geschäftschance. 👍
+
+Du hast absolut recht:
+
+✅ Viele Tools existieren
+❌ Aber sie sind kompliziert
+❌ Nicht auf polnisch optimiert
+❌ Nicht für „normale Leute“ gemacht
+❌ Ein Fehler kann sehr teuer werden
+❌ Viele Informationen sind fragmentiert und schwer zugänglich
+
+Das bedeutet nicht, dass es unmöglich ist — im Gegenteil:
+Es bedeutet, dass eine einfache, klare App genau das ist, was viele brauchen, gerade wenn:
+
+✔ sie gerade erst nach Deutschland kommen
+✔ sie wenig Deutsch sprechen
+✔ sie kein tiefes Buchhaltungswissen haben
+✔ sie Angst vor Fehlern und Strafen haben
+
+
+---
+
+📌 Warum ein solches Produkt große Perspektive hat
+
+1️⃣ Sprachbarriere + Rechtsunsicherheit
+
+Polnische Unternehmer in Deutschland kämpfen oft mit:
+
+Deutschlichen Formularen
+
+komplizierten Steuerregeln
+
+Bürokratie
+
+Pflichtmeldungen → Eine polnischsprachige, einfache App schafft echten Nutzen.
+
+
+
+---
+
+2️⃣ Komplexe Systeme + schlechte UX
+
+Viele Lösungen (DATEV, ELSTER, Lexware etc.) sind: ❌ nicht intuitiv
+❌ unübersichtlich
+❌ technisch schwer
+→ Für kleine Unternehmer ist das überwältigend.
+
+Eine schlanke, verständliche Oberfläche mit Klartext-Hinweisen wäre ein Riesen-Vorteil.
+
+
+---
+
+3️⃣ Hohe Konsequenzen bei Fehlern
+
+Ein kleines Versäumnis kann zu: ⚠️ Bußgeldern
+⚠️ Steuernachzahlungen
+⚠️ Finanzamt-Problemen
+→ Viele Unternehmer suchen deshalb Hilfe, Kontrolle & Sicherheit.
+
+
+---
+
+🧠 Wie so eine App aussehen könnte
+
+Hier ein konkretes Produktkonzept – mit realer Nachfrage:
+
+
+---
+
+📌 Kernfunktion 1: 📊 Übersichtliche Pflicht- & Aufgaben-Ansicht
+
+✔ Alle Termine, Fristen & Pflichten in einer Timeline
+✔ 100 % polnischsprachig
+✔ Erklärungen in einfachem Alltagssprache
+✔ Push-Benachrichtigungen zur Erinnerung
+✔ Vermeidung teurer Versäumnisse
+
+👉 Einfache UX = Vertrauen
+
+
+---
+
+📌 Kernfunktion 2: 📘 Rechts- & Steuer-Wissen in Klartext
+
+✔ Wichtige Infos zu:
+
+Gewerbeanmeldung
+
+Steuerarten
+
+Umsatzsteuervoranmeldung
+
+Rechnungsregeln ✔ Beispiele / Templates
+✔ Schritt-für-Schritt-Erklärungen
+
+
+Das ersetzt keinen Steuerberater — macht den Einstieg sicherer.
+
+
+---
+
+📌 Kernfunktion 3: 📅 Intelligente Terminerinnerungen
+
+✔ Fristen für:
+
+Finanzamt
+
+Krankenversicherung
+
+IHK, HWK
+
+Rentenversicherung ✔ Kalender-Ansicht + automatische Alerts
+
+
+
+---
+
+📌 Kernfunktion 4: 📎 Dokumentenscanner + Ablage
+
+✔ Scan von Belegen
+✔ Automatische Beschriftung
+✔ Export zur Steuerberatung
+
+
+---
+
+📌 Kernfunktion 5: 📞 Direkter Kontakt zu Experten
+
+✔ Chat / Terminbuchung mit Steuerberatern
+✔ Polnisch / Deutsch
+✔ Feste Preise für Beratungen
+
+→ Sicherheit + direkter Support
+
+
+---
+
+💡 Monetarisierung (wie du Geld verdienst)
+
+🔹 Freemium Modell
+– Basis kostenlos
+– Pro-Abo für erweiterte Funktionen
+
+🔹 Vermittlung zu Steuerberatern
+– Provision bei jedem Termin / Vertrag
+
+🔹 In-App Dienstleistungen
+– Dokumentenprüfung – Monatsreports
+
+🔹 Partnerschaften mit Behörden / Kammern
+
+
+---
+
+📍 Warum das Chancen hat
+
+✔ Spezifische Zielgruppe → weniger Konkurrenz
+✔ Bedarf ist real und emotional (Angst vor Fehlern)
+✔ Viele Unternehmer wollen keine komplizierte Software
+✔ Hohe Zahlungsbereitschaft für Sicherheit
+
+Beispielhafte Zielgruppen: ➡️ Polnische Handwerker
+➡️ Service-Dienstleister
+➡️ Einzelunternehmer & Freiberufler
+➡️ Zugereiste Selbstständige
+
+
+---
+
+⚠️ Risiken & Hürden realistisch betrachtet
+
+✔ Regulatorische Komplexität – Infos müssen korrekt & aktuell sein
+✔ Haftungsfragen – Text nicht „professioneller Rat“, sondern Hinweise
+✔ Kompetenzanforderung – Steuer- und Rechtswissen notwendig
+
+👉 Diese Risiken löst man mit:
+
+Zusammenarbeit mit Steuerberatern
+
+Rechtlich geprüften Inhalten
+
+Klare Disclaimer + Expertennetzwerk
+…  ?answer englisch show the start structure for the App on start ,later we develop more functions and tools ,we need layout ,roadmap step by step what we can already create  , => Warnung : responsive Design to to integrate on start ,to analize what ae the deferences between Nav and Header contents ,because that are same,what is false  ,SPA to integrate we dont need there single pages to big structure the press to reduce with SPA ,
+ link to look the current structure : https://github.com/Maks-Mm/turborepo-react-native.git
+
+The header is a broad container for introductory content (logo, search, headings), while navigation (nav) specifically refers to the links (menus, breadcrumbs) within that header, often using the <nav> HTML tag, though it can exist elsewhere, making the header the parent and the nav the child component for links. Think of the header as the whole top section of a website, and the navigation as the specific menu part inside it, both usually staying consistent across pages for user experience. 
+Header () 
+
+    Purpose: Introductory content for a page or section, like a welcome area.
+    Content: Often includes the site's logo, site title, search bar, and sometimes the main navigation.
+    HTML: Uses the <header> tag to semantically define this introductory area. 
+
+Navigation ()
+
+    Purpose: A section with links to other pages or parts of the same page (e.g., table of contents, breadcrumbs).
+    Content: A list of navigation links, often in the form of a menu.
+    HTML: Uses the <nav> tag for semantic meaning. 
+
+Relationship & Key Difference
+
+    Hierarchy: A <header> is the parent container, and a <nav> (containing links) is often a child within the header, but not always.
+    Scope: Header is broader (intro content); Nav is specific (links).
+    Example: A website's top bar (logo + links) is the header, containing the main navigation menu. 
+
+ => // packages/ui/src/components/Header.native.tsx
+"use client";
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  ScrollView,
+  Pressable,
+  StyleSheet,
+} from 'react-native';
+import {
+  Globe,
+  Bell,
+  Calendar,
+  FileText,
+  HelpCircle,
+  User,
+  ChevronDown,
+  Menu,
+  X,
+} from 'lucide-react-native';
+
+const HeaderNative = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  
+  const navigationItems = [
+    { id: 'dashboard', label: 'Pulpit', icon: <FileText size={18} /> },
+    { id: 'calendar', label: 'Kalendarz', icon: <Calendar size={18} /> },
+    { id: 'documents', label: 'Dokumenty', icon: <FileText size={18} /> },
+    { id: 'knowledge', label: 'Wiedza', icon: <HelpCircle size={18} /> },
+    { id: 'experts', label: 'Eksperci', icon: <User size={18} /> },
+  ];
+
+  return (
+    <View style={styles.header}>
+      {/* Top bar */}
+      <View style={styles.topBar}>
+        <View style={styles.logoContainer}>
+          <View style={styles.logo}>
+            <Text style={styles.logoText}>D</Text>
+          </View>
+          <View>
+            <Text style={styles.appName}>Doch.</Text>
+            <Text style={styles.subtitle}>Für polnische Unternehmer in DE</Text>
+          </View>
+        </View>
+
+        <View style={styles.actionsContainer}>
+          {/* Language Selector */}
+          <TouchableOpacity
+            style={styles.languageButton}
+            onPress={() => setShowLanguageDropdown(!showLanguageDropdown)}
+          >
+            <Globe size={16} color="#4B5563" />
+            <Text style={styles.languageText}>🇵🇱</Text>
+            <ChevronDown size={16} color="#4B5563" />
+          </TouchableOpacity>
+
+          {/* Notifications */}
+          <TouchableOpacity style={styles.notificationButton}>
+            <Bell size={20} color="#4B5563" />
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>3</Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* Urgent Alert */}
+          <View style={styles.urgentAlert}>
+            <Calendar size={14} color="#92400E" />
+            <Text style={styles.urgentText}>USt-VA: 10 dni</Text>
+          </View>
+
+          {/* Mobile Menu Button */}
+          <TouchableOpacity
+            onPress={() => setIsMenuOpen(!isMenuOpen)}
+            style={styles.menuButton}
+          >
+            {isMenuOpen ? (
+              <X size={24} color="#4B5563" />
+            ) : (
+              <Menu size={24} color="#4B5563" />
+            )}
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <View style={styles.mobileMenu}>
+          <ScrollView>
+            {navigationItems.map((item) => (
+              <TouchableOpacity
+                key={item.id}
+                style={styles.menuItem}
+                onPress={() => setIsMenuOpen(false)}
+              >
+                <View style={styles.menuItemIcon}>{item.icon}</View>
+                <Text style={styles.menuItemText}>{item.label}</Text>
+              </TouchableOpacity>
+            ))}
+            
+            {/* Urgent Alert in Menu */}
+            <View style={styles.menuAlert}>
+              <Calendar size={16} color="#DC2626" />
+              <View style={styles.alertContent}>
+                <Text style={styles.alertTitle}>Pilne: Umsatzsteuervoranmeldung</Text>
+                <Text style={styles.alertSubtitle}>Termin: 10 dni • Finanzamt Berlin</Text>
+              </View>
+            </View>
+          </ScrollView>
+        </View>
+      )}
+
+      {/* Language Dropdown Modal */}
+      <Modal
+        visible={showLanguageDropdown}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowLanguageDropdown(false)}
+      >
+        <Pressable
+          style={styles.modalOverlay}
+          onPress={() => setShowLanguageDropdown(false)}
+        >
+          <View style={styles.languageDropdown}>
+            <TouchableOpacity style={styles.languageOption}>
+              <Text style={styles.languageFlag}>🇵🇱</Text>
+              <Text style={styles.languageOptionText}>Polski</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.languageOption}>
+              <Text style={styles.languageFlag}>🇩🇪</Text>
+              <Text style={styles.languageOptionText}>Deutsch</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.languageOption}>
+              <Text style={styles.languageFlag}>🇬🇧</Text>
+              <Text style={styles.languageOptionText}>English</Text>
+            </TouchableOpacity>
+          </View>
+        </Pressable>
+      </Modal>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    height: 64,
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  logo: {
+    width: 32,
+    height: 32,
+    backgroundColor: 'linear-gradient(135deg, #2563EB 0%, #DC2626 100%)',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  appName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#111827',
+  },
+  subtitle: {
+    fontSize: 11,
+    color: '#6B7280',
+    marginTop: -2,
+  },
+  actionsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  languageButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    borderRadius: 8,
+    gap: 8,
+  },
+  languageText: {
+    fontSize: 16,
+  },
+  notificationButton: {
+    padding: 8,
+    position: 'relative',
+  },
+  badge: {
+    position: 'absolute',
+    top: 4,
+    right: 4,
+    backgroundColor: '#EF4444',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  badgeText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  urgentAlert: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FEF3C7',
+    borderWidth: 1,
+    borderColor: '#FDE68A',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+    gap: 4,
+  },
+  urgentText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#92400E',
+  },
+  menuButton: {
+    padding: 8,
+  },
+  mobileMenu: {
+    backgroundColor: '#FFFFFF',
+    borderTopWidth: 1,
+    borderTopColor: '#E5E7EB',
+    paddingVertical: 8,
+  },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
+  menuItemIcon: {
+    marginRight: 12,
+  },
+  menuItemText: {
+    fontSize: 16,
+    color: '#374151',
+  },
+  menuAlert: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FEE2E2',
+    borderWidth: 1,
+    borderColor: '#FECACA',
+    margin: 16,
+    padding: 12,
+    borderRadius: 8,
+    gap: 8,
+  },
+  alertContent: {
+    flex: 1,
+  },
+  alertTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#DC2626',
+  },
+  alertSubtitle: {
+    fontSize: 12,
+    color: '#DC2626',
+    marginTop: 2,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  languageDropdown: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    width: 200,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  languageOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  languageFlag: {
+    fontSize: 20,
+    marginRight: 12,
+  },
+  languageOptionText: {
+    fontSize: 16,
+    color: '#374151',
+  },
+});
+
+export default HeaderNative; , // packages/ui/src/components/Hero.tsx
+
+
+"use client";
+import React, { useEffect, useRef } from "react";
+
+export default function Hero() {
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!imageRef.current) return;
+
+      const xAxis = (window.innerWidth / 2 - e.clientX) / 50;
+      const yAxis = (window.innerHeight / 2 - e.clientY) / 50;
+
+      imageRef.current.style.transform =
+        `translateX(${xAxis}px) translateY(${yAxis}px)`;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  return (
+    <section
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        minHeight: "800px",
+        display: "flex",
+        overflow: "hidden",
+        backgroundColor: "#000",
+      }}
+    >
+      {/* ================= BACKGROUND IMAGE ================= */}
+      <div
+        ref={imageRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "url(https://plus.unsplash.com/premium_photo-1679860750530-0d6602d3bda7?q=80&w=1170&auto=format&fit=crop)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          zIndex: 1,
+          opacity: 0.45,
+          transition: "transform 0.1s ease-out",
+        }}
+      />
+
+      {/* Overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          background:
+            "linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.25) 100%)",
+        }}
+      />
+
+      {/* ================= CONTENT ================= */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          padding: "5% 8%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {/* Section indicator */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            marginBottom: "2rem",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              fontSize: "0.75rem",
+              letterSpacing: "1px",
+              color: "rgba(255,255,255,0.6)",
+              marginRight: "1rem",
+              fontWeight: 500,
+            }}
+          >
+            <span>PL → DE</span>
+            <div
+              style={{
+                width: "1px",
+                height: "2rem",
+                background:
+                  "linear-gradient(180deg, rgba(255,255,255,0.3), transparent)",
+                margin: "0.5rem 0",
+              }}
+            />
+            <span>BUSINESS</span>
+          </div>
+
+          <h1
+            style={{
+              fontSize: "8rem",
+              fontWeight: 300,
+              lineHeight: 0.8,
+              color: "rgba(255,255,255,0.1)",
+              letterSpacing: "-5px",
+            }}
+          >
+            /01
+          </h1>
+        </div>
+
+        {/* ================= MAIN TEXT ================= */}
+        <div style={{ maxWidth: "620px", marginTop: "2rem" }}>
+          <h2
+            style={{
+              fontSize: "3.5rem",
+              fontWeight: 700,
+              marginBottom: "1.5rem",
+              lineHeight: 1.1,
+              background:
+                "linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Business in Germany. <br />
+            Clear. In Polish.
+          </h2>
+
+          <div style={{ marginBottom: "2.5rem" }}>
+            <span
+              style={{
+                fontSize: "1.2rem",
+                color: "rgba(255,255,255,0.9)",
+              }}
+            >
+              For Polish entrepreneurs who want clarity, not fear.
+            </span>
+            <div
+              style={{
+                width: "220px",
+                height: "3px",
+                background:
+                  "linear-gradient(90deg, #e6a272, #a5b4fc, transparent)",
+                marginTop: "0.6rem",
+                borderRadius: "2px",
+              }}
+            />
+          </div>
+
+          <p
+            style={{
+              fontSize: "1.1rem",
+              lineHeight: 1.7,
+              color: "rgba(255,255,255,0.8)",
+              maxWidth: "520px",
+              marginBottom: "3rem",
+              fontWeight: 300,
+            }}
+          >
+            Doch is a simple all-in-one app that helps you understand German
+            rules, deadlines, and obligations — explained clearly in Polish.
+            No chaos. No guessing. No costly mistakes.
+          </p>
+
+          {/* ================= CTA ================= */}
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              flexWrap: "wrap",
+              marginBottom: "3rem",
+            }}
+          >
+            <button
+              style={{
+                background:
+                  "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                color: "#fff",
+                border: "none",
+                padding: "1rem 2rem",
+                fontSize: "1rem",
+                fontWeight: 600,
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              Start free →
+            </button>
+
+            <button
+              style={{
+                background: "transparent",
+                color: "rgba(255,255,255,0.9)",
+                border: "1px solid rgba(255,255,255,0.3)",
+                padding: "1rem 2rem",
+                fontSize: "1rem",
+                fontWeight: 500,
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              See how it works
+            </button>
+          </div>
+
+          {/* ================= TRUST ================= */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "2rem",
+              paddingTop: "2rem",
+              borderTop: "1px solid rgba(255,255,255,0.1)",
+            }}
+          >
+            <TrustItem label="100%" value="Polish language" />
+            <Divider />
+            <TrustItem label="⚖️" value="Legally reviewed" />
+            <Divider />
+            <TrustItem label="📱" value="Easy to use" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ================= SMALL HELPERS ================= */
+
+function TrustItem({ label, value }: { label: string; value: string }) {
+  return (
+    <div style={{ textAlign: "center" }}>
+      <div style={{ fontSize: "1.5rem", fontWeight: 700 }}>{label}</div>
+      <div
+        style={{
+          fontSize: "0.9rem",
+          color: "rgba(255,255,255,0.7)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function Divider() {
+  return (
+    <div
+      style={{
+        width: "1px",
+        height: "30px",
+        background: "rgba(255,255,255,0.2)",
+      }}
+    />
+  );
+}
+ , // packages/ui/src/components/Nav.tsx
+import React from 'react';
+
+// Simple internal state for navigation
+let currentPage = 'home';
+const setCurrentPage = (page: string) => {
+  currentPage = page;
+  // In a real app, you'd trigger a re-render here
+  // This is just for the concept
+};
+
+export default function Nav() {
+  const navItems = [
+    { label: 'Dashboard', key: 'home' },
+    { label: 'Fristen', key: 'deadlines' },
+    { label: 'Steuer-Tools', key: 'tools' },
+    { label: 'Wissen', key: 'knowledge' },
+    { label: 'Dokumente', key: 'documents' },
+    { label: 'Experten', key: 'experts' },
+  ];
+
+  return (
+    <nav style={{
+      position: 'sticky',
+      top: 0,
+      backgroundColor: 'rgba(10, 10, 10, 0.95)',
+      backdropFilter: 'blur(10px)',
+      color: '#ffffff',
+      padding: '1rem 5%',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+      zIndex: 1000,
+      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+    }}>
+      
+      <div style={{
+        maxWidth: '1400px',
+        margin: '0 auto',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
+        
+        {/* Logo */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          flexShrink: 0,
+        }}>
+          <div style={{
+            width: '40px',
+            height: '40px',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            borderRadius: '10px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: '20px',
+          }}>
+            ✓
+          </div>
+          <span style={{
+            color: 'white',
+            fontWeight: '800',
+            fontSize: '24px',
+            letterSpacing: '-0.5px',
+            background: 'linear-gradient(to right, #fff, #94a3b8)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}>
+            DOCH
+          </span>
+        </div>
+
+        {/* Navigation Links */}
+        <div style={{
+          display: 'flex',
+          gap: '8px',
+          alignItems: 'center',
+        }}>
+          {navItems.map((item) => (
+            <div
+              key={item.key}
+              style={{
+                color: currentPage === item.key ? '#60a5fa' : '#e2e8f0',
+                fontWeight: '500',
+                fontSize: '15px',
+                padding: '10px 16px',
+                borderRadius: '8px',
+                transition: 'all 0.3s ease',
+                backgroundColor: currentPage === item.key ? 'rgba(96, 165, 250, 0.1)' : 'transparent',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                if (currentPage !== item.key) {
+                  e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.15)';
+                  e.currentTarget.style.color = '#60a5fa';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== item.key) {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#e2e8f0';
+                }
+              }}
+              onClick={() => setCurrentPage(item.key)}
+            >
+              {item.label}
+            </div>
+          ))}
+        </div>
+
+        {/* Right Section */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1.5rem',
+          flexShrink: 0,
+        }}>
+          
+          {/* Language Selector */}
+          <div style={{
+            display: 'flex',
+            gap: '8px',
+            alignItems: 'center',
+          }}>
+            <button
+              style={{
+                backgroundColor: '#60a5fa',
+                color: 'white',
+                border: 'none',
+                padding: '6px 14px',
+                borderRadius: '6px',
+                fontSize: '13px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#60a5fa'}
+            >
+              PL
+            </button>
+            <button
+              style={{
+                backgroundColor: 'transparent',
+                color: '#94a3b8',
+                border: '1px solid #334155',
+                padding: '6px 14px',
+                borderRadius: '6px',
+                fontSize: '13px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)';
+                e.currentTarget.style.color = '#60a5fa';
+                e.currentTarget.style.borderColor = '#60a5fa';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#94a3b8';
+                e.currentTarget.style.borderColor = '#334155';
+              }}
+            >
+              DE
+            </button>
+          </div>
+
+          {/* CTA Button */}
+          <button
+            style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white',
+              border: 'none',
+              padding: '12px 28px',
+              borderRadius: '10px',
+              fontSize: '15px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            Kostenlos starten
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+} the header native taakes characters and design from Nav.tsx and to nav we gets example new panel for search
