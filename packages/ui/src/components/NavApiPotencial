@@ -1,646 +1,287 @@
-Excellent question! Getting **official deadlines and tax information** is crucial for your app's credibility. Let me show you the architecture for integrating official German tax/financial data:
+Perfect — you already have a **very strong technical and product vision**.
+Let me now give you a **clear, realistic, step-by-step roadmap** that connects:
 
-## 📊 **Architecture for Official Data Integration**
+UI → Auth → Backend → Data → Mobile → Monetization
 
-### **1. Data Sources Structure**
+This is written for a **real SaaS product**, not a demo.
 
-```typescript
-// packages/data/src/types/deadlines.ts
-export interface OfficialDeadline {
-  id: string;
-  type: 'TAX' | 'INSURANCE' | 'REPORTING' | 'REGISTRATION';
-  title: {
-    pl: string;
-    de: string;
-    en: string;
-  };
-  description: {
-    pl: string;
-    de: string;
-    en: string;
-  };
-  authority: 'FINANZAMT' | 'IHK' | 'HWK' | 'KRANKENKASSE' | 'RENTENVERSICHERUNG';
-  deadline: {
-    // Recurring pattern
-    frequency: 'MONTHLY' | 'QUARTERLY' | 'YEARLY' | 'BIANNUAL' | 'ONE_TIME';
-    // For monthly/quarterly: day of month (10 = 10th day)
-    dayOfMonth?: number;
-    // For specific dates (annual deadlines)
-    specificDate?: string; // "MM-DD"
-    // Quarter months for quarterly deadlines
-    quarterMonths?: number[]; // [1, 4, 7, 10] for Jan, Apr, Jul, Oct
-  };
-  legalReference: string; // e.g., "§ 18 UStG"
-  fineRange: {
-    min: number;
-    max: number;
-    currency: 'EUR';
-  };
-  region?: string[]; // Bundesländer if specific
-  applicableTo: ('EINZELUNTERNEHMER' | 'GMBH' | 'UG' | 'FREIBERUFLER')[];
-  documentsRequired: string[];
-  officialSource: {
-    url: string;
-    lastUpdated: string;
-  };
+---
+
+# 🧭 **MASTER ROADMAP – Polish Business App in Germany**
+
+Target:
+
+> In 6–9 months you have a **working MVP** that Polish entrepreneurs can really use.
+
+---
+
+# **PHASE 1 — FOUNDATION (Weeks 1–3)**
+
+> “If the foundation is wrong, everything breaks later.”
+
+## 1️⃣ App skeleton (you already started)
+
+You already have:
+
+```text
+Nav.tsx  
+Dashboard  
+Deadlines  
+Documents  
+Knowledge  
+Experts  
+```
+
+Now formalize it.
+
+### Folder structure
+
+```
+apps/web/
+  app/
+    (auth)/
+    (dashboard)/
+    api/
+packages/
+  ui/
+  data/
+  auth/
+  db/
+```
+
+This allows:
+
+* UI separate from logic
+* API separate from frontend
+* Easy scaling later
+
+---
+
+## 2️⃣ Authentication (Firebase first)
+
+You were correct: **Dashboard must be behind login**.
+
+### Implement:
+
+Firebase Auth:
+
+* Google
+* Email/password
+* Phone (optional later)
+
+Flow:
+
+```
+User visits /
+→ if not logged in → /login
+→ if logged in → /dashboard
+```
+
+Store in Firestore:
+
+```ts
+User {
+  id
+  email
+  language: 'pl'
+  businessType: 'EINZELUNTERNEHMER'
+  region: 'NRW'
+  createdAt
 }
 ```
 
-### **2. Official Data Sources to Integrate**
+This becomes the **brain** for everything later.
 
-```typescript
-// packages/data/src/sources/index.ts
-export const OFFICIAL_SOURCES = {
-  // 1. Bundeszentralamt für Steuern (BZSt)
-  BZST: {
-    baseUrl: 'https://www.bzst.de',
-    endpoints: {
-      ustVA: '/DE/Steuern_International/USt_VA/USt_VA_node.html',
-      taxCalendar: '/DE/Service/Termine/Termine_node.html'
-    }
-  },
-  
-  // 2. ELSTER Portal (Official Tax Portal)
-  ELSTER: {
-    baseUrl: 'https://www.elster.de',
-    api: 'https://www.elster.de/eportal/services' // Requires registration
-  },
-  
-  // 3. IHK/HWK (Chambers of Commerce)
-  IHK: {
-    baseUrl: 'https://www.ihk.de',
-    regionalAPIs: {
-      berlin: 'https://www.ihk-berlin.de',
-      munich: 'https://www.ihk-muenchen.de'
-    }
-  },
-  
-  // 4. Deutsche Rentenversicherung
-  DRV: {
-    baseUrl: 'https://www.deutsche-rentenversicherung.de',
-    deadlines: '/DRV/DE/Experten/Infos-fuer-Unternehmen/Fristen/fristen.html'
-  },
-  
-  // 5. Krankenkassen (Health Insurance)
-  AOK: {
-    baseUrl: 'https://www.aok.de',
-    businessPortal: '/firmenkunden'
-  },
-  
-  // 6. Bundesanzeiger (Official Gazette)
-  BUNDESANZEIGER: {
-    baseUrl: 'https://www.bundesanzeiger.de',
-    api: 'https://api.bundesanzeiger.de'
-  }
-} as const;
+---
+
+# **PHASE 2 — REAL DATA CORE (Weeks 4–7)**
+
+This is your killer feature 🔥
+
+## 3️⃣ Deadline Engine (you already designed this well)
+
+You already have:
+
+* `OfficialDeadline`
+* static fallback
+* date calculation
+* urgency levels
+
+Now do this:
+
+```
+User profile → businessType + region
+→ DeadlineService.getDeadlines()
+→ calculateDueDates()
+→ show in Dashboard + Nav
 ```
 
-### **3. Implementation: Data Layer with Fallbacks**
+Dashboard shows:
 
-```typescript
-// packages/data/src/services/deadlineService.ts
-import { OfficialDeadline } from '../types/deadlines';
-import { OFFICIAL_SOURCES } from '../sources';
-import { STATIC_DEADLINES } from './staticDeadlines';
+* Next deadline
+* What it is
+* How many days left
+* What happens if missed
 
-export class DeadlineService {
-  private cache = new Map<string, OfficialDeadline[]>();
-  private lastFetch: Date | null = null;
-  private CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+This creates **emotional value** (fear → relief).
 
-  /**
-   * Get deadlines for a specific business type
-   */
-  async getDeadlines(options: {
-    businessType: 'EINZELUNTERNEHMER' | 'GMBH' | 'UG' | 'FREIBERUFLER';
-    region?: string;
-    startDate?: Date;
-    endDate?: Date;
-  }): Promise<OfficialDeadline[]> {
-    
-    // Check cache first
-    const cacheKey = this.generateCacheKey(options);
-    if (this.isCacheValid(cacheKey)) {
-      return this.cache.get(cacheKey)!;
-    }
+---
 
-    try {
-      // Try to fetch from official sources
-      const officialData = await this.fetchFromOfficialSources(options);
-      
-      if (officialData.length > 0) {
-        // Cache successful response
-        this.cache.set(cacheKey, officialData);
-        this.lastFetch = new Date();
-        return officialData;
-      }
-    } catch (error) {
-      console.warn('Failed to fetch from official sources, using static data:', error);
-    }
+## 4️⃣ Knowledge engine (searchable)
 
-    // Fallback to static/curated data
-    return this.getStaticDeadlines(options);
-  }
+Your search bar must not be fake.
 
-  /**
-   * Calculate next due dates for deadlines
-   */
-  calculateDueDates(deadlines: OfficialDeadline[], startFrom: Date = new Date()) {
-    return deadlines.map(deadline => {
-      const nextDate = this.calculateNextDeadline(deadline, startFrom);
-      const daysUntil = Math.ceil((nextDate.getTime() - startFrom.getTime()) / (1000 * 60 * 60 * 24));
-      
-      return {
-        ...deadline,
-        nextDueDate: nextDate,
-        daysUntil,
-        urgency: this.calculateUrgency(daysUntil)
-      };
-    });
-  }
+Create:
 
-  private async fetchFromOfficialSources(options: any): Promise<OfficialDeadline[]> {
-    // Implementation for each source:
-    
-    // 1. For BZSt (Bundeszentralamt für Steuern)
-    // This would typically require web scraping or using their API if available
-    const ustDeadlines = await this.scrapeBZStDeadlines();
-    
-    // 2. For IHK (Chamber of Commerce)
-    const ihkDeadlines = await this.fetchIHKDeadlines(options.region);
-    
-    // 3. Combine and filter by business type
-    return [...ustDeadlines, ...ihkDeadlines]
-      .filter(d => d.applicableTo.includes(options.businessType));
-  }
-
-  private getStaticDeadlines(options: any): OfficialDeadline[] {
-    // Filter static data based on business type
-    return STATIC_DEADLINES.filter(d => 
-      d.applicableTo.includes(options.businessType) &&
-      (!options.region || !d.region || d.region.includes(options.region))
-    );
-  }
-
-  private calculateNextDeadline(deadline: OfficialDeadline, startFrom: Date): Date {
-    const now = startFrom;
-    const currentYear = now.getFullYear();
-    
-    switch (deadline.deadline.frequency) {
-      case 'MONTHLY':
-        const monthDate = new Date(currentYear, now.getMonth(), deadline.deadline.dayOfMonth!);
-        if (monthDate < now) {
-          monthDate.setMonth(monthDate.getMonth() + 1);
-        }
-        return monthDate;
-
-      case 'QUARTERLY':
-        const quarterMonths = deadline.deadline.quarterMonths || [1, 4, 7, 10];
-        let nextQuarter = quarterMonths.find(m => {
-          const date = new Date(currentYear, m - 1, deadline.deadline.dayOfMonth!);
-          return date > now;
-        });
-        
-        if (!nextQuarter) {
-          // Next year, first quarter
-          nextQuarter = quarterMonths[0];
-          return new Date(currentYear + 1, nextQuarter - 1, deadline.deadline.dayOfMonth!);
-        }
-        
-        return new Date(currentYear, nextQuarter - 1, deadline.deadline.dayOfMonth!);
-
-      case 'YEARLY':
-        const [month, day] = deadline.deadline.specificDate!.split('-').map(Number);
-        let annualDate = new Date(currentYear, month - 1, day);
-        if (annualDate < now) {
-          annualDate.setFullYear(currentYear + 1);
-        }
-        return annualDate;
-
-      default:
-        return new Date();
-    }
-  }
-
-  private calculateUrgency(daysUntil: number): 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW' {
-    if (daysUntil <= 7) return 'CRITICAL';
-    if (daysUntil <= 14) return 'HIGH';
-    if (daysUntil <= 30) return 'MEDIUM';
-    return 'LOW';
-  }
-
-  private generateCacheKey(options: any): string {
-    return JSON.stringify(options);
-  }
-
-  private isCacheValid(key: string): boolean {
-    if (!this.cache.has(key) || !this.lastFetch) return false;
-    
-    const cacheAge = new Date().getTime() - this.lastFetch.getTime();
-    return cacheAge < this.CACHE_DURATION;
-  }
+```
+KnowledgeItem {
+  id
+  title.pl
+  content.pl
+  tags
+  relatedDeadlines
 }
 ```
 
-### **4. Static Data (Fallback - Very Important!)**
+Then:
 
-```typescript
-// packages/data/src/services/staticDeadlines.ts
-export const STATIC_DEADLINES: OfficialDeadline[] = [
-  {
-    id: 'ust-va-monthly',
-    type: 'TAX',
-    title: {
-      pl: 'Miesięczna deklaracja VAT',
-      de: 'Monatliche Umsatzsteuervoranmeldung',
-      en: 'Monthly VAT advance return'
-    },
-    description: {
-      pl: 'Miesięczne rozliczenie podatku VAT. Dla przedsiębiorców z obrotem > 7.500€/kwartał',
-      de: 'Monatliche Umsatzsteuervoranmeldung. Für Unternehmer mit Umsatz > 7.500€/Quartal',
-      en: 'Monthly VAT advance return. For businesses with turnover > 7.500€/quarter'
-    },
-    authority: 'FINANZAMT',
-    deadline: {
-      frequency: 'MONTHLY',
-      dayOfMonth: 10
-    },
-    legalReference: '§ 18 UStG',
-    fineRange: {
-      min: 25,
-      max: 25000,
-      currency: 'EUR'
-    },
-    applicableTo: ['EINZELUNTERNEHMER', 'GMBH', 'UG'],
-    documentsRequired: ['Sales records', 'Purchase invoices'],
-    officialSource: {
-      url: 'https://www.bzst.de/DE/Steuern_International/USt_VA/USt_VA_node.html',
-      lastUpdated: '2024-01-01'
-    }
-  },
-  {
-    id: 'einkommensteuer-yearly',
-    type: 'TAX',
-    title: {
-      pl: 'Roczne zeznanie podatkowe (ESt)',
-      de: 'Jahressteuererklärung (Einkommensteuer)',
-      en: 'Annual income tax return'
-    },
-    description: {
-      pl: 'Roczne zeznanie podatkowe do 31 lipca następnego roku',
-      de: 'Jahressteuererklärung bis zum 31. Juli des Folgejahres',
-      en: 'Annual tax return by July 31 of the following year'
-    },
-    authority: 'FINANZAMT',
-    deadline: {
-      frequency: 'YEARLY',
-      specificDate: '07-31'
-    },
-    legalReference: '§ 149 AO',
-    fineRange: {
-      min: 25,
-      max: 25000,
-      currency: 'EUR'
-    },
-    applicableTo: ['EINZELUNTERNEHMER', 'FREIBERUFLER'],
-    documentsRequired: ['Income statement', 'Expense records'],
-    officialSource: {
-      url: 'https://www.bzst.de/DE/Privatpersonen/Steuererklaerung/steuererklaerung_node.html',
-      lastUpdated: '2024-01-01'
-    }
-  },
-  {
-    id: 'gewerbesteuer-quarterly',
-    type: 'TAX',
-    title: {
-      pl: 'Kwartalna zaliczka na podatek od działalności gospodarczej',
-      de: 'Vierteljährliche Gewerbesteuervorauszahlung',
-      en: 'Quarterly trade tax advance payment'
-    },
-    description: {
-      pl: 'Zaliczka na podatek od działalności gospodarczej, płatna kwartalnie',
-      de: 'Vierteljährliche Vorauszahlung der Gewerbesteuer',
-      en: 'Quarterly advance payment of trade tax'
-    },
-    authority: 'FINANZAMT',
-    deadline: {
-      frequency: 'QUARTERLY',
-      dayOfMonth: 10,
-      quarterMonths: [2, 5, 8, 11] // Feb, May, Aug, Nov (for previous quarter)
-    },
-    legalReference: '§ 19 GewStG',
-    fineRange: {
-      min: 25,
-      max: 25000,
-      currency: 'EUR'
-    },
-    applicableTo: ['EINZELUNTERNEHMER', 'GMBH', 'UG'],
-    documentsRequired: ['Profit calculation'],
-    officialSource: {
-      url: 'https://www.bzst.de/DE/Unternehmen/Gewerbesteuer/gewerbesteuer_node.html',
-      lastUpdated: '2024-01-01'
-    }
-  },
-  {
-    id: 'krankenversicherung-monthly',
-    type: 'INSURANCE',
-    title: {
-      pl: 'Składka zdrowotna',
-      de: 'Krankenversicherungsbeitrag',
-      en: 'Health insurance contribution'
-    },
-    description: {
-      pl: 'Miesięczna składka na ubezpieczenie zdrowotne',
-      de: 'Monatlicher Krankenversicherungsbeitrag',
-      en: 'Monthly health insurance contribution'
-    },
-    authority: 'KRANKENKASSE',
-    deadline: {
-      frequency: 'MONTHLY',
-      dayOfMonth: 15
-    },
-    legalReference: '§ 249 SGB V',
-    fineRange: {
-      min: 10,
-      max: 1000,
-      currency: 'EUR'
-    },
-    applicableTo: ['EINZELUNTERNEHMER', 'FREIBERUFLER'],
-    documentsRequired: ['Income proof'],
-    officialSource: {
-      url: 'https://www.gkv-spitzenverband.de',
-      lastUpdated: '2024-01-01'
-    }
-  },
-  // Add 20+ more deadlines...
-];
+* When user searches "VAT"
+* Show:
+
+  * deadlines
+  * articles
+  * document templates
+
+This becomes your **Google for Polish businesses**.
+
+---
+
+# **PHASE 3 — DOCUMENTS & COMPLIANCE (Weeks 8–11)**
+
+## 5️⃣ Documents
+
+Implement:
+
+* Upload
+* Scan (later)
+* Tag to deadline
+
+Example:
+
+```
+Invoice → linked to → VAT return April
 ```
 
-### **5. Updated Nav Component with Real Data**
+Now your app becomes **practical**, not just informational.
 
-```tsx
-"use client";
-import React, { useState, useEffect } from 'react';
-import { DeadlineService } from '@repo/data';
+---
 
-const Nav = () => {
-  const [activePage, setActivePage] = useState('dashboard');
-  const [showSearch, setShowSearch] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [urgentDeadline, setUrgentDeadline] = useState<{
-    title: string;
-    daysUntil: number;
-    authority: string;
-  } | null>(null);
+## 6️⃣ Export for Steuerberater
 
-  const deadlineService = new DeadlineService();
+Generate:
 
-  useEffect(() => {
-    // Fetch urgent deadlines on component mount
-    const fetchUrgentDeadlines = async () => {
-      try {
-        const deadlines = await deadlineService.getDeadlines({
-          businessType: 'EINZELUNTERNEHMER' // Default or from user profile
-        });
-        
-        const dueDates = deadlineService.calculateDueDates(deadlines);
-        
-        // Find the most urgent deadline (closest date)
-        const mostUrgent = dueDates
-          .filter(d => d.urgency === 'CRITICAL' || d.urgency === 'HIGH')
-          .sort((a, b) => a.daysUntil - b.daysUntil)[0];
-        
-        if (mostUrgent) {
-          setUrgentDeadline({
-            title: mostUrgent.title.pl,
-            daysUntil: mostUrgent.daysUntil,
-            authority: mostUrgent.authority
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching deadlines:', error);
-      }
-    };
+* ZIP of documents
+* CSV of income/expenses
 
-    fetchUrgentDeadlines();
-  }, []);
+This makes tax advisors love your product.
 
-  const navItems = [
-    { id: 'dashboard', label: 'Pulpit' },
-    { id: 'deadlines', label: 'Fristen & Termine' },
-    { id: 'documents', label: 'Dokumenty' },
-    { id: 'knowledge', label: 'Wiedza' },
-    { id: 'experts', label: 'Eksperci' },
-  ];
+---
 
-  return (
-    <nav className="bg-gray-50 border-b border-gray-200">
-      {/* Main Navigation */}
-      <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-        
-        {/* Navigation Items */}
-        <div className="flex items-center space-x-1 overflow-x-auto">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActivePage(item.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activePage === item.id
-                  ? 'bg-blue-50 text-blue-600 border border-blue-100'
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+# **PHASE 4 — MOBILE-FIRST UX (Weeks 12–14)**
 
-        {/* Right Side */}
-        <div className="flex items-center gap-4">
-          
-          {/* Search */}
-          <button
-            onClick={() => setShowSearch(!showSearch)}
-            className="p-2 hover:bg-gray-100 rounded-lg"
-          >
-            {showSearch ? (
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            )}
-          </button>
+Polish workers use:
+📱 Phones
+📱 Tablets
+❌ Not laptops
 
-          {/* Urgent Alert - Dynamic */}
-          {urgentDeadline && (
-            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg ${
-              urgentDeadline.daysUntil <= 3 
-                ? 'bg-red-50 border border-red-200' 
-                : 'bg-yellow-50 border border-yellow-200'
-            }`}>
-              <svg className={`w-4 h-4 ${
-                urgentDeadline.daysUntil <= 3 ? 'text-red-700' : 'text-yellow-700'
-              }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span className={`text-sm font-semibold ${
-                urgentDeadline.daysUntil <= 3 ? 'text-red-800' : 'text-yellow-800'
-              }`}>
-                {urgentDeadline.title}: {urgentDeadline.daysUntil} dni
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
+So:
 
-      {/* Search Panel */}
-      {showSearch && (
-        <div className="bg-white border-t border-gray-200 px-4 py-3">
-          <div className="container mx-auto">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Szukaj terminów, dokumentów, informacji..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                autoFocus
-              />
-              {searchQuery.length > 0 && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                >
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              )}
-            </div>
+* Tailwind responsive
+* Bottom navigation on mobile
+* Big buttons
+* Calendar-style deadlines
 
-            {/* Search Suggestions */}
-            <div className="mt-3">
-              <p className="text-sm font-semibold text-gray-700 mb-2">Częste pytania:</p>
-              <div className="space-y-1">
-                {[
-                  'Jak złożyć Umsatzsteuervoranmeldung?',
-                  'Termin na Gewerbesteuer',
-                  'Wzór faktury VAT',
-                  'Meldunek w Niemczech',
-                ].map((suggestion, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSearchQuery(suggestion)}
-                    className="w-full text-left px-2 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded flex items-center gap-2"
-                  >
-                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    {suggestion}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </nav>
-  );
-};
+This is a **mass adoption requirement**.
 
-export default Nav;
+---
+
+# **PHASE 5 — EXPERT MARKETPLACE (Weeks 15–18)**
+
+## 7️⃣ Expert network
+
+Add:
+
+* Polish tax advisors
+* Fixed price services
+
+User clicks:
+
+```
+“Check my VAT” → pays 29€ → Polish tax advisor reviews
 ```
 
-### **6. API Integration Strategy**
+This is your **money engine**.
 
-```typescript
-// apps/web/app/api/deadlines/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { DeadlineService } from '@repo/data';
+---
 
-export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
-  
-  const businessType = searchParams.get('businessType') as 
-    'EINZELUNTERNEHMER' | 'GMBH' | 'UG' | 'FREIBERUFLER' || 'EINZELUNTERNEHMER';
-  
-  const region = searchParams.get('region') || undefined;
-  
-  const service = new DeadlineService();
-  
-  try {
-    const deadlines = await service.getDeadlines({
-      businessType,
-      region
-    });
-    
-    const dueDates = service.calculateDueDates(deadlines);
-    
-    return NextResponse.json({
-      success: true,
-      data: dueDates,
-      lastUpdated: new Date().toISOString(),
-      source: 'BZSt/IHK/Static'
-    });
-  } catch (error) {
-    return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Failed to fetch deadlines',
-        fallbackUsed: true 
-      },
-      { status: 500 }
-    );
-  }
-}
+# **PHASE 6 — OFFICIAL DATA (Parallel)**
+
+Start with:
+
+* Static data
+* Scraping BZSt
+* Scraping IHK
+
+Later:
+
+* ELSTER API
+* Bundesanzeiger
+
+Always show:
+
+```
+Source: BZSt – last updated 2025-01
 ```
 
-## 📋 **Roadmap for Official Data Integration:**
+This builds **trust**.
 
-### **Phase 1: Static Data (Week 1-2)**
-- ✅ Implement static deadline database
-- ✅ Calculate dynamic due dates
-- ✅ Show urgent alerts in UI
+---
 
-### **Phase 2: Web Scraping (Week 3-4)**
-- Implement BZSt website scraping
-- Scrape IHK regional deadlines
-- Cache results for 24 hours
-- Fallback to static data if scraping fails
+# 🧠 Why this wins
 
-### **Phase 3: Official APIs (Week 5-8)**
-- Apply for ELSTER API access
-- Implement Bundesanzeiger API
-- Set up webhook for deadline changes
-- Real-time updates for tax law changes
+Because you combine:
 
-### **Phase 4: Advanced Features (Week 9-12)**
-- Regional deadline variations
-- Personalized deadline calendar
-- Push notifications for deadlines
-- Integration with Steuerberater software
+| What users fear    | What you give  |
+| ------------------ | -------------- |
+| Fines              | Reminders      |
+| Confusion          | Polish clarity |
+| Paper chaos        | Document hub   |
+| No help            | Polish experts |
+| German bureaucracy | One simple app |
 
-## ⚠️ **Important Legal Considerations:**
+---
 
-1. **Disclaimer**: Always show "This information is for guidance only. Consult a tax advisor."
-2. **Source Attribution**: Always show where data comes from (e.g., "Source: BZSt, last updated...")
-3. **Update Mechanism**: Regular updates when tax laws change
-4. **Data Accuracy**: Multiple verification sources
-5. **User Responsibility**: Clear that user is responsible for meeting deadlines
+# 🏁 MVP Definition (what you must reach)
 
-## 🔗 **Potential Official Partnerships:**
+Your MVP is complete when:
 
-1. **IHK Partnerships**: Chamber of Commerce APIs
-2. **Steuerberaterkammer**: Tax advisor associations
-3. **Local Finanzamt**: Some offer API access for registered businesses
-4. **Government Open Data**: data.gv.at for Austria, similar for Germany
+✅ User can log in
+✅ Select business type
+✅ See deadlines
+✅ Get alerts
+✅ Upload documents
+✅ Search knowledge
+✅ Contact Polish expert
 
-This architecture ensures you have reliable data from day one (static fallback) while building towards official integrations!
+That is a **sellable product**.
+
+---
+
+If you want, next I can give you:
+
+* **Exact dashboard layout**
+* Or **database schema**
+* Or **Firebase + Next.js auth wiring**
+* Or **how to onboard the first 100 users**
+
+Just tell me what you want next.
