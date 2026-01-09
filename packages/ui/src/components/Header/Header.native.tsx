@@ -20,7 +20,7 @@ import {
   X,
 } from 'lucide-react-native';
 
-import { styles } from '../styles/styles.native';
+import { styles } from '../Header/styles.native';
 
 const HeaderNative = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

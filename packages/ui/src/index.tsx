@@ -1,6 +1,6 @@
 //packages/ui/src/index.tsx
 export { LanguageProvider, useLanguage } from "./contexts/LanguageContext";
-export { default as Header } from "./components/Header.native";
+export { default as Header } from "./components/Header";
 
 // Export Web Components
 export { default as Nav } from './components/Nav';
