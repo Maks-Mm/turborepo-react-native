@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@myorg/types": ["packages/types/src"],
+      "@myorg/deadlines": ["packages/deadlines/src"],
+      "@myorg/api-client": ["packages/api-client/src"],
+      "@myorg/auth": ["packages/auth/src"]
+    }
+  }
+}

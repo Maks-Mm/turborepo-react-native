@@ -4,6 +4,8 @@
 
 "use client";
 import React, { useState } from 'react';
+import { AuthButton } from '../components/AuthButton';
+
 
 const Nav = () => {
   const [activePage, setActivePage] = useState('dashboard');
@@ -58,6 +60,7 @@ const Nav = () => {
               </svg>
             )}
           </button>
+          <AuthButton/>
 
           {/* Urgent Alert */}
           <div className="flex items-center gap-2 bg-yellow-50 border border-yellow-200 px-3 py-1.5 rounded-lg">
