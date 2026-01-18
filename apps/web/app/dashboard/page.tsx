@@ -5,8 +5,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchDeadlines } from "@myorg/api-client";
-import { Deadline } from "@myorg/types";
+import { fetchDeadlines } from "@repo/api-client";
+import { Deadline } from "@repo/types";
 
 export default function Dashboard() {
   const [deadlines, setDeadlines] = useState<Deadline[]>([]);

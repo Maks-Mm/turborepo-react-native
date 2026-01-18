@@ -95,7 +95,7 @@ const FEATURES: Feature[] = [
   },
 ];
 
-export default function Section() {
+ function Section() {
   return (
     <section
       style={{
@@ -193,3 +193,4 @@ export default function Section() {
     </section>
   );
 }
+export default Section;

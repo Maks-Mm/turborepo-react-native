@@ -1,10 +1,10 @@
 //packages/ui/src/components/AuthButton.tsx
 "use client"
 
-import { login } from "@myorg/auth"
+import { login } from "@repo/auth"
 
-export function AuthButton() {
-  return (
+ function AuthButton() {
+  return (    
     <button
       onClick={() => {
         console.log(login("test@test.com", "123"))
@@ -14,3 +14,4 @@ export function AuthButton() {
     </button>
   )
 }
+export default AuthButton;

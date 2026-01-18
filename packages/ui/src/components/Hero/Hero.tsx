@@ -4,7 +4,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 
-export default function Hero() {
+ function Hero() {
   const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -265,3 +265,4 @@ function Divider() {
     />
   );
 }
+export default Hero;

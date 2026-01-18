@@ -1,7 +1,7 @@
 //apps/api/src/index.ts
 
 import express from "express";
-import { getDeadlinesForUser } from "@myorg/deadlines";
+import { getDeadlinesForUser } from "@repo/deadlines";
 
 const app = express();
 

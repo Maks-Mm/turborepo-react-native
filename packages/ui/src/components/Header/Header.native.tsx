@@ -1,4 +1,6 @@
 //packages/ui/src/components/Header.native.tsx
+"use client";
+
 import React, { useState } from 'react';
 import {
   View,

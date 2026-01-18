@@ -1,7 +1,7 @@
 //packages/deadlines/src/index.ts
 
 
-import { Deadline } from "@myorg/types";
+import { Deadline } from "@repo/types";
 
 export function getDeadlinesForUser(): Deadline[] {
   const now = new Date();

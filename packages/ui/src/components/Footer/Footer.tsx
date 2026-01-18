@@ -55,7 +55,7 @@ const GlassIcon: React.FC<{ children: string; href: string }> = ({ children, hre
   </a>
 );
 
-export default function Footer() {
+ function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -284,3 +284,4 @@ export default function Footer() {
     </footer>
   );
 }
+export default Footer;

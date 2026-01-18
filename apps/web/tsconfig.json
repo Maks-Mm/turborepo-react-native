@@ -9,8 +9,12 @@
     "baseUrl": ".",
     "paths": {
       "@repo/ui": ["../../packages/ui/src"],
-      "@repo/ui/*": ["../../packages/ui/src/*"]
-    }
+      "@repo/ui/*": ["../../packages/ui/src/*"],
+      "@repo/api-client": ["../../packages/api-client/src"],
+      "@repo/types": ["../../packages/types/src"]
+    },
+    "skipLibCheck": true,
+    "types": []
   },
   "include": [
     "next-env.d.ts",

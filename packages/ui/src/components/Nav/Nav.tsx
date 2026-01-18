@@ -4,7 +4,7 @@
 
 "use client";
 import React, { useState } from 'react';
-import { AuthButton } from '../components/AuthButton';
+import AuthButton from '../AuthButton';
 
 
 const Nav = () => {
@@ -24,18 +24,17 @@ const Nav = () => {
     <nav className="bg-gray-50 border-b border-gray-200">
       {/* Main Navigation */}
       <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-        
+
         {/* Navigation Items */}
         <div className="flex items-center space-x-1 overflow-x-auto">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActivePage(item.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activePage === item.id
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activePage === item.id
                   ? 'bg-blue-50 text-blue-600 border border-blue-100'
                   : 'text-gray-600 hover:bg-gray-100'
-              }`}
+                }`}
             >
               {item.label}
             </button>
@@ -44,7 +43,7 @@ const Nav = () => {
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
-          
+
           {/* Search */}
           <button
             onClick={() => setShowSearch(!showSearch)}
@@ -60,7 +59,7 @@ const Nav = () => {
               </svg>
             )}
           </button>
-          <AuthButton/>
+          <AuthButton />
 
           {/* Urgent Alert */}
           <div className="flex items-center gap-2 bg-yellow-50 border border-yellow-200 px-3 py-1.5 rounded-lg">

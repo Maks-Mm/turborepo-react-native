@@ -7,7 +7,7 @@ interface HeaderViewProps {
   onToggleLanguage: () => void;
 }
 
-export const HeaderView = ({
+ const HeaderView = ({
   showLanguageDropdown,
   onToggleLanguage,
 }: HeaderViewProps) => {
@@ -97,3 +97,4 @@ export const HeaderView = ({
     </header>
   );
 };
+export default HeaderView;

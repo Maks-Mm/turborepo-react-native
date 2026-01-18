@@ -2,10 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@myorg/types": ["packages/types/src"],
-      "@myorg/deadlines": ["packages/deadlines/src"],
-      "@myorg/api-client": ["packages/api-client/src"],
-      "@myorg/auth": ["packages/auth/src"]
+      "@repo/types": ["packages/types/src"],
+      "@repo/deadlines": ["packages/deadlines/src"],
+      "@repo/api-client": ["packages/api-client/src"],
+      "@repo/auth": ["packages/auth/src"]
     }
   }
 }
