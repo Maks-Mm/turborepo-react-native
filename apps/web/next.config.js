@@ -30,11 +30,6 @@ const nextConfig = {
   // },
 
   turbopack: {
-    resolve: {
-      alias: {
-        "react-native$": "react-native-web",
-      },
-    },
     rules: {
       '*.svg': {
         loaders: ['@svgr/webpack'],
