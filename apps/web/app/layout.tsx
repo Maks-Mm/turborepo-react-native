@@ -1,10 +1,10 @@
 //apps/web/app/layout.tsx
+
+import { AuthProvider } from './client-auth';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
-export const metadata = {
-  title: 'Doch - Für polnische Unternehmer in DE',
-  description: 'Business in Germany. Clear. In Polish.',
-};
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
@@ -13,8 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body className="min-h-screen bg-white">
-        {children}
+      <body className={inter.className}>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

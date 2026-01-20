@@ -1,5 +1,6 @@
 //apps/web/app/page.tsx
-"use client";
+
+'use client';
 
 import { Header, Nav, Hero, Footer, Section } from "@repo/ui";
 import { LanguageProvider } from "@repo/ui";

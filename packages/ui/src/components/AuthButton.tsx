@@ -1,17 +1,18 @@
-//packages/ui/src/components/AuthButton.tsx
-"use client"
+"use client";
 
-import { login } from "@repo/auth"
+import { useAuth } from "@repo/auth";
 
- function AuthButton() {
-  return (    
+function AuthButton() {
+  
+  const { login } = useAuth();
+
+  return (
     <button
-      onClick={() => {
-        console.log(login("test@test.com", "123"))
-      }}
+      onClick={() => login("test@test.com", "123")}
     >
       Login
     </button>
-  )
+  );
 }
+
 export default AuthButton;
