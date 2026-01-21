@@ -1,6 +1,6 @@
 //packages/api/client/src/login.ts
 
- import { auth } from "./firebase";
+ import { auth } from "../../auth";
 import {
   GoogleAuthProvider,
   signInWithPopup,
