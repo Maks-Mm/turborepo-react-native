@@ -1,5 +1,4 @@
-//app/web/app/(dashboard)/page.tsx
-
+// apps/web/app/(dashboard)/page.tsx
 'use client';
 
 import { ProtectedRoute } from '../components/ProtectedRoute';
@@ -13,8 +12,6 @@ function DashboardContent() {
     </div>
   );
 }
-
-export const dynamic = 'force-dynamic';
 
 export default function DashboardPage() {
   return (

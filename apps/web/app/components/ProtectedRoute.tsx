@@ -1,7 +1,9 @@
+// apps/web/app/components/ProtectedRoute.tsx
 'use client';
-import { useRouter } from 'next/navigation';
+
 import { useEffect } from 'react';
 import { useAuth } from '@repo/auth';
+import { useRouter } from 'next/navigation';
 
 export const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
@@ -9,13 +11,12 @@ export const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/login');
+      router.replace('/login'); // replace instead of push
     }
   }, [user, loading, router]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (!user) return null;
 
-  return user ? <>{children}</> : null;
+  return <>{children}</>;
 };
