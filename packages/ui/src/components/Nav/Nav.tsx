@@ -4,7 +4,8 @@
 
 "use client";
 import React, { useState } from 'react';
-import AuthButton from '../AuthButton';
+import { AuthButton } from '../auth/AuthButton';
+
 
 
 const Nav = () => {
