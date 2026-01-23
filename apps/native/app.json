@@ -3,7 +3,6 @@
     "name": "NativeApp",
     "slug": "native-app",
     "version": "1.0.0",
-    "sdkVersion": "52.0.0",
     "scheme": "com.turbo.example",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

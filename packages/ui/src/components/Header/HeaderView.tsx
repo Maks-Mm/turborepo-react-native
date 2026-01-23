@@ -1,6 +1,5 @@
 //packages/ui/src/components/styles.web.ts
 
-import React from "react";
 
 interface HeaderViewProps {
   showLanguageDropdown: boolean;
