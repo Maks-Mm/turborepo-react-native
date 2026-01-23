@@ -8,7 +8,7 @@ import { useAuth } from '@repo/auth';
 import { useRouter } from 'expo-router';
 import { Link } from 'expo-router';
 
-export function LoginForm() {
+ function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -40,7 +40,7 @@ export function LoginForm() {
           <TextInput
             value={email}
             onChangeText={setEmail}
-            className="mt-1 p-2 border border-gray-300 rounded"
+            style={{ marginTop: 4, padding: 8, borderWidth: 1, borderColor: '#d1d5db', borderRadius: 4 }}
             keyboardType="email-address"
             autoCapitalize="none"
           />
@@ -53,7 +53,7 @@ export function LoginForm() {
           <TextInput
             value={password}
             onChangeText={setPassword}
-            className="mt-1 p-2 border border-gray-300 rounded"
+            style={{ marginTop: 4, padding: 8, borderWidth: 1, borderColor: '#d1d5db', borderRadius: 4 }}
             secureTextEntry
           />
         </View>
@@ -78,3 +78,5 @@ export function LoginForm() {
     </View>
   );
 }
+
+export default LoginForm
