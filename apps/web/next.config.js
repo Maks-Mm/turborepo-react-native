@@ -1,39 +1,24 @@
-//apps/web/next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  serverExternalPackages: ['@repo/auth'],
-
-  webpack(config) {
-    config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      "react-native$": "react-native-web",
-    };
-    
-    // Add SVG handling for webpack
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-    
+  transpilePackages: ["@repo/ui", "@repo/auth"],
+  
+  // Webpack config for standard builds/fallback
+  webpack: (config) => {
+    config.resolve.alias["react-native"] = "react-native-web";
     return config;
   },
 
-  // Remove turbopack config from here
-  // turbopack: {
-  //   rules: {
-  //     '*.svg': {
-  //       loaders: ['@svgr/webpack'],
-  //       as: '*.js',
-  //     },
-  //   },
-  // },
-
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
+  // This tells Next.js 16+ how to handle aliases in Turbopack
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        'react-native': 'react-native-web',
+      },
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
       },
     },
   },

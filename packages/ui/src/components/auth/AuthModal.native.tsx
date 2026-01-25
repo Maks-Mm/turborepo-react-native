@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal } from 'react-native';
-import { LoginForm } from './LoginForm.native';
+import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm.native';
 
 interface AuthModalProps {

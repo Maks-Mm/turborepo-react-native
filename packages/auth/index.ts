@@ -74,3 +74,4 @@ if (!hasValidKeys) {
 }
 
 export { auth, db };
+export * from "./src";

@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "next dev --webpack",
     "build": "turbo run build",
     "clean": "turbo run clean",
     "start": "yarn dev"
