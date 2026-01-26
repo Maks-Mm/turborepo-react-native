@@ -1,3 +1,4 @@
+/* packages/ui/src/global.ts
 import 'react-native';
 
 declare module 'react-native' {
@@ -14,3 +15,4 @@ declare module 'react-native' {
     className?: string;
   }
 }
+*/
