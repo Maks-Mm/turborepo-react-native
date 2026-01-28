@@ -1,7 +1,8 @@
+//packages/ui/src/components/Nav/Nav.tsx
 "use client";
 
 import { AuthButton } from '../auth/AuthButton';
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 
 interface NavItem {
   id: string;
@@ -21,15 +22,10 @@ const Nav: React.FC = () => {
     { id: 'experts', label: 'Eksperci' },
   ];
 
-  const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const input = e.currentTarget;
-    setSearchQuery(input.value);
+  // Proper typing for input change event
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
   };
-
-
-
-
-
 
   return (
     <nav className="bg-gray-50 border-b border-gray-200">
@@ -85,12 +81,11 @@ const Nav: React.FC = () => {
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.currentTarget.value)}
+                onChange={handleSearchChange}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                placeholder="Search..."
               />
-
-
             </div>
-            {/* ... Rest of your suggestions ... */}
           </div>
         </div>
       )}

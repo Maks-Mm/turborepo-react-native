@@ -13,13 +13,19 @@ export function AuthButton() {
 
   if (user) {
     return (
-      <View className="flex-row items-center gap-2">
-        <Text className="text-sm text-gray-700">{user.email}</Text>
-        <TouchableOpacity
-          onPress={() => logout()}
-          className="px-4 py-2 bg-red-600 rounded-lg"
-        >
-          <Text className="text-white">Logout</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+
+        <Text style={{ fontSize: 14, color: '#374151' }}>
+          {user.email}
+        </Text>
+
+        <TouchableOpacity onPress={() => logout()} style={{
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          backgroundColor: '#DC2626',
+          borderRadius: 8
+        }}>
+          <Text style={{ fontSize: 14, color: '#374151' }}>Logout</Text>
         </TouchableOpacity>
       </View>
     );
@@ -29,11 +35,16 @@ export function AuthButton() {
     <View>
       <TouchableOpacity
         onPress={() => setShowAuthModal(true)}
-        className="px-4 py-2 bg-blue-600 rounded-lg"
+        style={{
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          backgroundColor: '#DC2626',
+          borderRadius: 8
+        }}
       >
-        <Text className="text-white">Login</Text>
+        <Text style={{ fontSize: 14, color: '#374151' }}>Login</Text>
       </TouchableOpacity>
-      
+
       {showAuthModal && (
         <AuthModal onClose={() => setShowAuthModal(false)} />
       )}
