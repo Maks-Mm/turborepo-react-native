@@ -1,8 +1,13 @@
 // apps/native/app/_layout.tsx
-import { Stack } from "expo-router"
+import { Stack } from "expo-router";
+import { AuthProvider } from "@repo/auth";
 
 const AppLayout = () => {
-  return <Stack />
+  return (
+    <AuthProvider>
+      <Stack />
+    </AuthProvider>
+  );
 }
 
-export default AppLayout
+export default AppLayout;

@@ -1,17 +1,18 @@
-//packages/ui/src/components/styles.web.ts
-
+// packages/ui/src/components/styles.native.ts
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   header: {
     backgroundColor: '#ffffff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
   },
   topBar: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    height: 64,
+    paddingVertical: 12,
   },
   logoContainer: {
     flexDirection: 'row',
@@ -29,6 +30,7 @@ export const styles = StyleSheet.create({
   logoText: {
     color: '#fff',
     fontWeight: '700',
+    fontSize: 16,
   },
   appName: {
     fontSize: 18,
@@ -62,6 +64,7 @@ export const styles = StyleSheet.create({
 
   notificationButton: {
     padding: 8,
+    position: 'relative',
   },
 
   badge: {
@@ -70,12 +73,16 @@ export const styles = StyleSheet.create({
     right: 2,
     backgroundColor: '#EF4444',
     borderRadius: 8,
-    paddingHorizontal: 4,
+    width: 16,
+    height: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   badgeText: {
     color: '#fff',
     fontSize: 10,
+    fontWeight: 'bold',
   },
 
   menuButton: {
@@ -84,12 +91,17 @@ export const styles = StyleSheet.create({
 
   mobileMenu: {
     backgroundColor: '#fff',
+    borderTopWidth: 1,
+    borderTopColor: '#E5E7EB',
+    maxHeight: 300,
   },
 
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F3F4F6',
   },
 
   menuItemIcon: {
@@ -98,6 +110,7 @@ export const styles = StyleSheet.create({
 
   menuItemText: {
     fontSize: 16,
+    color: '#374151',
   },
 
   modalOverlay: {
@@ -112,13 +125,24 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 12,
     width: 220,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
 
   languageOption: {
     paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F3F4F6',
   },
 
   languageOptionText: {
     fontSize: 16,
+    color: '#374151',
   },
 });

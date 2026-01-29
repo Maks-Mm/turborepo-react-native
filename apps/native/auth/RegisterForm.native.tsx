@@ -1,5 +1,4 @@
-//apps/native/auth/RegisterForm.native.tsx
-
+// apps/native/auth/RegisterForm.native.tsx
 import React, { useState } from 'react';
 import {
   View,
@@ -7,6 +6,7 @@ import {
   TouchableOpacity,
   Text,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import { useAuth } from '@repo/auth';
 
@@ -14,8 +14,9 @@ export function RegisterForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
   const [error, setError] = useState('');
-const { register, loading } = useAuth();
+  const { register, loading } = useAuth();
 
   const handleSubmit = async () => {
     setError('');
@@ -26,63 +27,125 @@ const { register, loading } = useAuth();
     }
     
     try {
-      await register(email, password);
+      await register(email, password, name);
     } catch (err) {
       setError('Registration failed');
     }
   };
 
   return (
-    <View className="w-full space-y-4 p-4">
-      <View>
-        <Text className="text-sm font-medium text-gray-700 mb-1">Email</Text>
+    <View style={styles.container}>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Name</Text>
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          placeholder="Enter your name"
+          style={styles.input}
+          placeholderTextColor="#9CA3AF"
+        />
+      </View>
+      
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Email</Text>
         <TextInput
           value={email}
           onChangeText={setEmail}
           placeholder="Enter your email"
           autoCapitalize="none"
           keyboardType="email-address"
-          className="border border-gray-300 rounded-md p-2 bg-white"
+          style={styles.input}
+          placeholderTextColor="#9CA3AF"
         />
       </View>
       
-      <View>
-        <Text className="text-sm font-medium text-gray-700 mb-1">Password</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Password</Text>
         <TextInput
           value={password}
           onChangeText={setPassword}
           placeholder="Enter your password"
           secureTextEntry
-          className="border border-gray-300 rounded-md p-2 bg-white"
+          style={styles.input}
+          placeholderTextColor="#9CA3AF"
         />
       </View>
       
-      <View>
-        <Text className="text-sm font-medium text-gray-700 mb-1">Confirm Password</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Confirm Password</Text>
         <TextInput
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           placeholder="Confirm your password"
           secureTextEntry
-          className="border border-gray-300 rounded-md p-2 bg-white"
+          style={styles.input}
+          placeholderTextColor="#9CA3AF"
         />
       </View>
       
       {error ? (
-        <Text className="text-red-600 text-sm">{error}</Text>
+        <Text style={styles.errorText}>{error}</Text>
       ) : null}
       
       <TouchableOpacity
         onPress={handleSubmit}
         disabled={loading}
-        className="bg-green-600 rounded-md p-3 items-center disabled:opacity-50"
+        style={[styles.button, loading && styles.buttonDisabled]}
       >
         {loading ? (
           <ActivityIndicator color="white" />
         ) : (
-          <Text className="text-white font-medium">Register</Text>
+          <Text style={styles.buttonText}>Register</Text>
         )}
       </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%', // This is actually okay in RN
+    gap: 16,
+    padding: 16,
+  },
+  inputContainer: {
+    width: '100%',
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#374151',
+    marginBottom: 4,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    borderRadius: 8,
+    padding: 12,
+    backgroundColor: 'white',
+    fontSize: 16,
+    color: '#111827',
+  },
+  button: {
+    backgroundColor: '#16A34A',
+    borderRadius: 8,
+    padding: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 8,
+  },
+  buttonDisabled: {
+    opacity: 0.5,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: '600',
+    fontSize: 16,
+  },
+  errorText: {
+    color: '#DC2626',
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+});

@@ -1,14 +1,20 @@
-//app/web/app/(auth)/login/page.tsx
-
+// apps/web/app/(auth)/login/page.tsx
 'use client';
-import { LoginForm } from '@repo/ui/components/auth/LoginForm';
+import { LoginForm } from '@repo/ui'; // Should work now
 
 export const dynamic = 'force-dynamic';
 
 export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <LoginForm />
+      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
+        <div>
+          <h2 className="text-center text-3xl font-bold text-gray-900">
+            Sign in to your account
+          </h2>
+        </div>
+        <LoginForm />
+      </div>
     </div>
   );
 }

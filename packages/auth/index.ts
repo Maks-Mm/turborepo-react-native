@@ -20,24 +20,32 @@ if (!hasValidKeys) {
   console.log('🔧 Using mocked Firebase for development (main index.ts)');
 
   // Create mock auth object
-  auth = {
-    currentUser: null,
-    signInWithEmailAndPassword: async (email: string, password: string) => {
-      console.log(`Mock sign in: ${email}`);
-      return { user: { uid: 'dev-user-id', email } };
-    },
-    createUserWithEmailAndPassword: async (email: string, password: string) => {
-      console.log(`Mock sign up: ${email}`);
-      return { user: { uid: 'dev-user-id', email } };
-    },
-    signOut: async () => {
-      console.log('Mock sign out');
-    },
-    onAuthStateChanged: (callback: (user: any) => void) => {
-      callback(null); // Simulate logged out state
-      return () => {}; // Unsubscribe function
-    }
-  } as any;
+ 
+   
+   
+   auth = {
+  currentUser: null,
+
+  signInWithEmailAndPassword: async (email: string, _password: string) => {
+    console.log(`Mock sign in: ${email}`);
+    return { user: { uid: 'dev-user-id', email } };
+  },
+
+  createUserWithEmailAndPassword: async (email: string, _password: string) => {
+    console.log(`Mock sign up: ${email}`);
+    return { user: { uid: 'dev-user-id', email } };
+  },
+
+  signOut: async () => {
+    console.log('Mock sign out');
+  },
+
+  onAuthStateChanged: (callback: (user: any) => void) => {
+    callback(null);
+    return () => {};
+  }
+} as any;
+
 
   // Create mock firestore object
   db = {

@@ -1,26 +1,20 @@
+// apps/web/next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@repo/ui", "@repo/auth"],
+  transpilePackages: ['@repo/ui', '@repo/auth'],
   
-  // Webpack config for standard builds/fallback
+  // Add an empty turbopack config to silence the error
+  turbopack: {},
+  
+  // Keep webpack config for non-Turbopack builds
   webpack: (config) => {
-    config.resolve.alias["react-native"] = "react-native-web";
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react-native$': 'react-native-web',
+      'react-native-svg$': 'react-native-svg-web',
+      'lucide-react-native$': 'lucide-react',
+    };
     return config;
-  },
-
-  // This tells Next.js 16+ how to handle aliases in Turbopack
-  experimental: {
-    turbo: {
-      resolveAlias: {
-        'react-native': 'react-native-web',
-      },
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
   },
 };
 

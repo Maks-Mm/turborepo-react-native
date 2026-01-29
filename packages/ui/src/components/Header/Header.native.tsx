@@ -22,9 +22,12 @@ import {
   X,
 } from 'lucide-react-native';
 
-import { styles } from '../Header/styles.native';
+// Correct import - use native styles
+import { styles } from './styles.native'; // NOT styles.web!
+import { AuthButton } from '../auth/AuthButton.native'; // Add this import
 
 const HeaderNative = () => {
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
 
@@ -62,6 +65,9 @@ const HeaderNative = () => {
             <Text style={styles.languageText}>🇵🇱</Text>
             <ChevronDown size={16} color="#4B5563" />
           </TouchableOpacity>
+
+          {/* ✅ ADDED AUTH BUTTON HERE */}
+          <AuthButton />
 
           <TouchableOpacity style={styles.notificationButton}>
             <Bell size={20} color="#4B5563" />

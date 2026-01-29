@@ -16,3 +16,15 @@ declare module 'react-native' {
   }
 }
 */
+// packages/ui/src/global.d.ts
+declare global {
+  interface Window {
+    ReactNativeWebView?: unknown;
+  }
+  
+  interface Navigator {
+    product?: string;
+  }
+}
+
+export {};

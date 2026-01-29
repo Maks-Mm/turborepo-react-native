@@ -1,19 +1,17 @@
 {
-  "$schema": "https://turborepo.com/schema.json",
-  "ui": "tui",
-  "tasks": {
+  "pipeline": {
     "build": {
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"]
     },
     "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "lint": {},
-    "clean": {
       "cache": false
+    },
+    "@repo/types#build": {
+      "outputs": ["dist/**"]
+    },
+    "@repo/typescript-config#build": {
+      "outputs": ["dist/**"]
     }
   }
 }
