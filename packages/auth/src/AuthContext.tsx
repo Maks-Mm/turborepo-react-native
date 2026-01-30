@@ -44,22 +44,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initializeAuth();
   }, []);
 
-  const login = async (email: string, password: string) => {
-    setLoading(true);
-    try {
-      // TODO: Implement actual login logic
-      console.log('Logging in with:', email);
-      const userData = { id: '1', email, name: 'Test User' };
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
-    } catch (error) {
-      console.error('Login error:', error);
-      throw error;
-    } finally {
-      setLoading(false);
-    }
-  };
-
+const login = async (email: string, _password: string) => {
+  setLoading(true);
+  try {
+    console.log('Logging in with:', email);
+    const userData = { id: '1', email, name: 'Test User' };
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+  } catch (error) {
+    console.error('Login error:', error);
+    throw error;
+  } finally {
+    setLoading(false);
+  }
+};
   const logout = async () => {
     setLoading(true);
     try {
