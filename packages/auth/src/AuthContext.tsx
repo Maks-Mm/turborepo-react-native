@@ -72,7 +72,7 @@ const login = async (email: string, _password: string) => {
     }
   };
 
-  const register = async (email: string, password: string, name: string) => {
+  const register = async (email: string, _password: string, name: string) => {
     setLoading(true);
     try {
       // TODO: Implement actual registration logic
