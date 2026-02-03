@@ -1,3 +1,4 @@
+//packages/ui/src/button.tsx
 import * as React from "react";
 import {
   StyleSheet,
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingTop: 14,
     paddingBottom: 14,
-    paddingLeft: 30,
+    paddingLeft: 30,  
     paddingRight: 30,
     fontSize: 15,
     backgroundColor: "#2f80ed",

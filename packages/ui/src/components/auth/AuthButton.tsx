@@ -3,6 +3,7 @@
 
 import { useAuth } from "@repo/auth";
 import { useState } from "react";
+import { AuthModal } from "./AuthModal";
 
 export function AuthButton() {
   const { user, loading, logout } = useAuth();
@@ -10,7 +11,7 @@ export function AuthButton() {
 
   if (loading) {
     return (
-      <button 
+      <button
         className="px-4 py-2 bg-gray-300 rounded-lg text-gray-600 cursor-not-allowed flex items-center gap-2"
         disabled
       >
@@ -26,8 +27,8 @@ export function AuthButton() {
         <span className="text-sm text-gray-700 hidden md:inline">
           {user.email}
         </span>
-        <button 
-          onClick={() => logout()} 
+        <button
+          onClick={() => logout()}
           className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
         >
           Logout
@@ -45,6 +46,10 @@ export function AuthButton() {
         Login
       </button>
       {/* AuthModal component here */}
+
+      {showAuthModal && (
+        <AuthModal onClose={() => setShowAuthModal(false)} />
+      )}
     </div>
   );
 }
