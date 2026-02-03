@@ -1,14 +1,18 @@
-//packages/ui/src/components/auth/LoginForm.native.tsx
-
-"use client";
+//packages/ui/src/components/auth/LOginForm.native.tsx
 
 import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  StyleSheet,
+} from 'react-native';
 import { useAuth } from '@repo/auth';
-import { useRouter } from 'expo-router';
-import { Link } from 'expo-router';
+import { useRouter, Link } from 'expo-router';
 
- function LoginForm() {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -17,61 +21,51 @@ import { Link } from 'expo-router';
 
   const handleSubmit = async () => {
     setError('');
-    
     try {
       await login(email, password);
       router.push('/dashboard');
-    } catch (err) {
+    } catch {
       setError('Invalid credentials');
       Alert.alert('Error', 'Invalid credentials');
     }
   };
 
   return (
-    <View className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
-      <Text className="text-3xl font-bold text-center text-gray-900">
-        Logowanie
-      </Text>
-      <View className="mt-8 space-y-6">
+    <View style={styles.container}>
+      <Text style={styles.title}>Logowanie</Text>
+
+      <View style={styles.form}>
         <View>
-          <Text className="text-sm font-medium text-gray-700">
-            Email
-          </Text>
+          <Text style={styles.label}>Email</Text>
           <TextInput
             value={email}
             onChangeText={setEmail}
-            style={{ marginTop: 4, padding: 8, borderWidth: 1, borderColor: '#d1d5db', borderRadius: 4 }}
+            style={styles.input}
             keyboardType="email-address"
             autoCapitalize="none"
           />
         </View>
-        
+
         <View>
-          <Text className="text-sm font-medium text-gray-700">
-            Password
-          </Text>
+          <Text style={styles.label}>Password</Text>
           <TextInput
             value={password}
             onChangeText={setPassword}
-            style={{ marginTop: 4, padding: 8, borderWidth: 1, borderColor: '#d1d5db', borderRadius: 4 }}
+            style={styles.input}
             secureTextEntry
           />
         </View>
-        
-        {error && (
-          <Text className="text-red-600 text-sm">{error}</Text>
-        )}
-        
-        <TouchableOpacity
-          onPress={handleSubmit}
-          className="bg-blue-600 p-2 rounded"
-        >
-          <Text className="text-white text-center">Login</Text>
+
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
-      <Text className="text-center text-sm text-gray-600">
+
+      <Text style={styles.footerText}>
         Nie masz konta?{' '}
-        <Link href="/register" className="text-blue-600">
+        <Link href="/register" style={styles.link}>
           Zarejestruj się
         </Link>
       </Text>
@@ -79,4 +73,62 @@ import { Link } from 'expo-router';
   );
 }
 
-export default LoginForm
+export default LoginForm;
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    maxWidth: 420,
+    padding: 24,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    alignSelf: 'center',
+    marginTop: 40,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#111827',
+  },
+  form: {
+    marginTop: 24,
+    gap: 16,
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#374151',
+    marginBottom: 4,
+  },
+  input: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#d1d5db',
+    borderRadius: 6,
+  },
+  error: {
+    color: '#dc2626',
+    fontSize: 14,
+  },
+  button: {
+    backgroundColor: '#2563eb',
+    padding: 12,
+    borderRadius: 6,
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: '600',
+  },
+  footerText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 14,
+    color: '#4b5563',
+  },
+  link: {
+    color: '#2563eb',
+    fontWeight: '500',
+  },
+});
