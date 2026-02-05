@@ -14,7 +14,7 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  register: (email: string, password: string, name: string) => Promise<void>;
+  register: (email: string, password: string, name?: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -30,7 +30,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // TODO: Implement actual auth initialization
         // Check for stored token, validate it, etc.
         const storedUser = localStorage.getItem('user');
-        
+
         if (storedUser) {
           setUser(JSON.parse(storedUser));
         }
@@ -44,20 +44,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initializeAuth();
   }, []);
 
-const login = async (email: string, _password: string) => {
-  setLoading(true);
-  try {
-    console.log('Logging in with:', email);
-    const userData = { id: '1', email, name: 'Test User' };
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
-  } catch (error) {
-    console.error('Login error:', error);
-    throw error;
-  } finally {
-    setLoading(false);
-  }
-};
+  const login = async (email: string, _password: string) => {
+    setLoading(true);
+    try {
+      console.log('Logging in with:', email);
+      const userData = { id: '1', email, name: 'Test User' };
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
   const logout = async () => {
     setLoading(true);
     try {
@@ -72,12 +72,17 @@ const login = async (email: string, _password: string) => {
     }
   };
 
-  const register = async (email: string, _password: string, name: string) => {
+  const register = async (email: string, _password: string, name?: string) => {
     setLoading(true);
     try {
-      // TODO: Implement actual registration logic
       console.log('Registering:', email, name);
-      const userData = { id: '1', email, name };
+
+      const userData = {
+        id: '1',
+        email,
+        name: name ?? 'User', // fallback
+      };
+
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));
     } catch (error) {
@@ -87,6 +92,7 @@ const login = async (email: string, _password: string) => {
       setLoading(false);
     }
   };
+
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout, register }}>

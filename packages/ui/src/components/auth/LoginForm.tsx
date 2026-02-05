@@ -3,19 +3,28 @@
 
 import { useState } from 'react';
 import { useAuth } from '@repo/auth';
+import { useRouter } from "next/navigation";
+
 
 export function LoginForm() {
+
+
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login, loading } = useAuth();
 
+  const router = useRouter();
+
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    
+
     try {
       await login(email, password);
+      router.replace("/");
     } catch (err) {
       setError('Login failed. Please check your credentials.');
     }
@@ -36,7 +45,7 @@ export function LoginForm() {
           required
         />
       </div>
-      
+
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Password
@@ -50,11 +59,11 @@ export function LoginForm() {
           required
         />
       </div>
-      
+
       {error && (
         <div className="text-red-600 text-sm">{error}</div>
       )}
-      
+
       <button
         type="submit"
         disabled={loading}

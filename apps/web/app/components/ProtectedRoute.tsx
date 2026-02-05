@@ -10,9 +10,9 @@ interface ProtectedRouteProps {
   requireAuth?: boolean; // Set to false for public routes that redirect when authenticated
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ 
-  children, 
-  requireAuth = true 
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+  children,
+  requireAuth = true
 }) => {
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -20,11 +20,9 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   useEffect(() => {
     if (!loading) {
       if (requireAuth && !user) {
-        // Redirect to login if auth is required but no user
-        router.replace('/login');
+        router.replace('/');
       } else if (!requireAuth && user) {
-        // Redirect away from auth pages if already logged in
-        router.replace('/dashboard');
+        router.replace('/');
       }
     }
   }, [user, loading, router, requireAuth]);

@@ -1,8 +1,13 @@
 // packages/ui/src/components/auth/AuthModal.native.tsx
-"use client";
 
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, Modal } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+} from 'react-native';
 import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm.native';
 
@@ -14,32 +19,84 @@ export function AuthModal({ onClose }: AuthModalProps) {
   const [mode, setMode] = useState<'login' | 'register'>('login');
 
   return (
-    <Modal visible={true} onRequestClose={onClose} transparent>
-      <View className="flex-1 justify-center items-center bg-black bg-opacity-50">
-        <View className="bg-white rounded-lg p-6 w-full max-w-md">
-          <View className="flex-row justify-between items-center mb-6">
-            <View className="flex-row space-x-4">
+    <Modal visible transparent onRequestClose={onClose} animationType="fade">
+      <View style={styles.overlay}>
+        <View style={styles.modal}>
+          {/* Header */}
+          <View style={styles.header}>
+            <View style={styles.tabs}>
               <TouchableOpacity
                 onPress={() => setMode('login')}
-                className={`px-4 py-2 ${mode === 'login' ? 'border-b-2 border-blue-600' : ''}`}
+                style={[styles.tabButton, mode === 'login' && styles.activeTab]}
               >
-                <Text className={mode === 'login' ? 'text-blue-600' : 'text-gray-500'}>Login</Text>
+                <Text style={[styles.tabText, mode === 'login' && styles.activeTabText]}>
+                  Login
+                </Text>
               </TouchableOpacity>
+
               <TouchableOpacity
                 onPress={() => setMode('register')}
-                className={`px-4 py-2 ${mode === 'register' ? 'border-b-2 border-blue-600' : ''}`}
+                style={[styles.tabButton, mode === 'register' && styles.activeTab]}
               >
-                <Text className={mode === 'register' ? 'text-blue-600' : 'text-gray-500'}>Register</Text>
+                <Text style={[styles.tabText, mode === 'register' && styles.activeTabText]}>
+                  Register
+                </Text>
               </TouchableOpacity>
             </View>
+
             <TouchableOpacity onPress={onClose}>
-              <Text className="text-gray-400">✕</Text>
+              <Text style={styles.closeText}>✕</Text>
             </TouchableOpacity>
           </View>
-          
+
           {mode === 'login' ? <LoginForm /> : <RegisterForm />}
         </View>
       </View>
     </Modal>
   );
 }
+const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modal: {
+    width: '90%',
+    maxWidth: 420,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 24,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  tabs: {
+    flexDirection: 'row',
+    gap: 16, // works on newer RN, otherwise use marginRight
+  },
+  tabButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
+  activeTab: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#2563eb',
+  },
+  tabText: {
+    color: '#6b7280',
+    fontSize: 16,
+  },
+  activeTabText: {
+    color: '#2563eb',
+    fontWeight: '600',
+  },
+  closeText: {
+    color: '#9ca3af',
+    fontSize: 20,
+  },
+});
