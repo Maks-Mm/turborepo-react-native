@@ -20,7 +20,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   useEffect(() => {
     if (!loading) {
       if (requireAuth && !user) {
-        router.replace('/');
+        router.replace('/'); // Redirect to login if not authenticated
       } else if (!requireAuth && user) {
         router.replace('/');
       }

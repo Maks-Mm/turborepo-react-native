@@ -24,7 +24,7 @@ export function LoginForm() {
 
     try {
       await login(email, password);
-      router.replace("/");
+      router.replace("/dashboard"); // Redirect to dashboard on successful login
     } catch (err) {
       setError('Login failed. Please check your credentials.');
     }

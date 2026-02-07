@@ -21,7 +21,7 @@ export function AuthButton() {
           onPress={() => logout()}
           className="bg-red-600 rounded-lg px-4 py-2"
         >
-          <Text className="text-white text-sm font-medium">Logout</Text>
+          <Text className="text-white text-sm font-medium">Logout </Text>
         </TouchableOpacity>
       </View>
     );
