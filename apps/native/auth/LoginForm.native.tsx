@@ -9,18 +9,24 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { useAuth } from '@repo/auth';
+import { useRouter } from 'expo-router';
 
-export function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
+export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-const { login, loading } = useAuth();
+  const { login, loading } = useAuth();
+  const router = useRouter();
+
+
 
   const handleSubmit = async () => {
     setError('');
     try {
       await login(email, password);
-       onSuccess?.();
+      setTimeout(() => {
+        router.replace('/dashboard');
+      }, 0);
     } catch (err) {
       setError('Invalid credentials');
     }
@@ -39,7 +45,7 @@ const { login, loading } = useAuth();
           className="border border-gray-300 rounded-md p-2 bg-white"
         />
       </View>
-      
+
       <View>
         <Text className="text-sm font-medium text-gray-700 mb-1">Password</Text>
         <TextInput
@@ -50,11 +56,11 @@ const { login, loading } = useAuth();
           className="border border-gray-300 rounded-md p-2 bg-white"
         />
       </View>
-      
+
       {error ? (
         <Text className="text-red-600 text-sm">{error}</Text>
       ) : null}
-      
+
       <TouchableOpacity
         onPress={handleSubmit}
         disabled={loading}

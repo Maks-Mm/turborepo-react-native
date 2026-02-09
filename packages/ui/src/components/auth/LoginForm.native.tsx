@@ -11,23 +11,23 @@ import {
 } from 'react-native';
 import { useAuth } from '@repo/auth';
 import { useRouter, Link } from 'expo-router';
-import { useNavigation } from "@react-navigation/native";
-
-const navigation = useNavigation();
 
 
-function LoginForm() {
+
+function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
+  const router = useRouter();
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
-  const router = useRouter();
 
   const handleSubmit = async () => {
     setError('');
     try {
       await login(email, password);
-      router.push('/');
+      onSuccess?.();
+      router.replace('/dashboard');
     } catch {
       setError('Invalid credentials');
       Alert.alert('Error', 'Invalid credentials');
