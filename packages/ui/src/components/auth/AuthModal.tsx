@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from 'react';
-import { LoginForm } from './LoginForm';
+import  LoginForm from './LoginForm.web';
 import { RegisterForm } from './RegisterForm';
 
 interface AuthModalProps {

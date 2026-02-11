@@ -1,4 +1,4 @@
-// packages/ui/src/components/auth/LoginForm.tsx (Web version)
+// packages/ui/src/components/auth/LoginForm.web.tsx (Web version)
 'use client';
 
 import { useState } from 'react';
@@ -6,7 +6,7 @@ import { useAuth } from '@repo/auth';
 import { useRouter } from "next/navigation";
 
 
-export function LoginForm() {
+function LoginForm() {
 
 
 
@@ -74,3 +74,5 @@ export function LoginForm() {
     </form>
   );
 }
+
+export  default LoginForm;
