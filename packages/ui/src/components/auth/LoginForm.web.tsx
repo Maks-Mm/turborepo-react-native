@@ -1,21 +1,19 @@
 // packages/ui/src/components/auth/LoginForm.web.tsx (Web version)
-'use client';
 
+'use client';
 import { useState } from 'react';
 import { useAuth } from '@repo/auth';
-import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 
 
 function LoginForm() {
-
-
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login, loading } = useAuth();
 
-  const router = useRouter();
+  //const router = useRouter();
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,7 +22,7 @@ function LoginForm() {
 
     try {
       await login(email, password);
-      router.replace("/dashboard"); // Redirect to dashboard on successful login
+      // router.replace("/dashboard"); // Redirect to dashboard on successful login
     } catch (err) {
       setError('Login failed. Please check your credentials.');
     }
@@ -75,4 +73,4 @@ function LoginForm() {
   );
 }
 
-export  default LoginForm;
+export default LoginForm;

@@ -8,7 +8,7 @@ import {
   Modal,
   StyleSheet,
 } from 'react-native';
-import { LoginForm } from './LoginForm';
+import LoginForm from './LoginForm.native';
 import { RegisterForm } from './RegisterForm.native';
 
 interface AuthModalProps {
