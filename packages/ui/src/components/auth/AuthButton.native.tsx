@@ -15,7 +15,7 @@ const useSafeAuth = () => {
   }
 };
 
-export function AuthButton() {
+ function AuthButton() {
   const { user, loading, logout } = useSafeAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
@@ -90,3 +90,5 @@ export function AuthButton() {
     </TouchableOpacity>
   );
 }
+
+export default AuthButton;

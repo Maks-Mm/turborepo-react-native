@@ -3,7 +3,7 @@
 'use client';
 import { useState } from 'react';
 import { useAuth } from '@repo/auth';
-//import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 
 function LoginForm() {
@@ -13,7 +13,7 @@ function LoginForm() {
   const [error, setError] = useState('');
   const { login, loading } = useAuth();
 
-  //const router = useRouter();
+  const router = useRouter();
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,7 +22,7 @@ function LoginForm() {
 
     try {
       await login(email, password);
-      // router.replace("/dashboard"); // Redirect to dashboard on successful login
+      router.replace("/dashboard"); // Redirect to dashboard on successful login
     } catch (err) {
       setError('Login failed. Please check your credentials.');
     }

@@ -15,7 +15,7 @@ import { useRouter, Link } from 'expo-router';
 
 
 function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
-  const router = useRouter();
+  //const router = useRouter();
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +27,7 @@ function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
     try {
       await login(email, password);
       onSuccess?.();
-      router.replace('/dashboard');
+     // router.replace('/dashboard');
     } catch {
       setError('Invalid credentials');
       Alert.alert('Error', 'Invalid credentials');

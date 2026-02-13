@@ -1,11 +1,11 @@
-// packages/ui/src/components/auth/AuthButton.tsx (web version)
+// packages/ui/src/components/auth/AuthButton.web.tsx (web version)
 "use client";
 
 import { useAuth } from "@repo/auth";
 import { useState } from "react";
 import { AuthModal } from "./AuthModal";
 
-export function AuthButton() {
+ function AuthButton() {
   const { user, loading, logout } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
@@ -53,3 +53,5 @@ export function AuthButton() {
     </div>
   );
 }
+
+export default AuthButton;
