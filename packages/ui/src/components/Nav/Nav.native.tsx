@@ -1,7 +1,7 @@
 //packages/ui/src/components/Nav/Nav.native.tsx
 import React, { useState } from "react";
 import { View, Text, Pressable, TextInput, StyleSheet } from "react-native";
-import { AuthButton } from "../auth/AuthButton";
+import  AuthButton  from "../auth/AuthButton";
 
 const navItems = [
   { id: "dashboard", label: "Pulpit" },

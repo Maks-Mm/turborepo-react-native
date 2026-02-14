@@ -1,6 +1,6 @@
 //apps/web/app/layout.tsx
 
-import { AuthProvider } from './client-auth';
+import { AuthProvider } from '@repo/auth';
 import { Inter } from 'next/font/google';
 import './globals.css';
 

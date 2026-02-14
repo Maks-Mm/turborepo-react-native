@@ -2,23 +2,13 @@
   "name": "@repo/ui",
   "version": "1.0.0",
   "private": true,
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsup",
-    "build:web": "tsup src/index.ts --format cjs,esm --dts --out-dir dist",
-    "dev": "tsup --watch"
-  },
-  "dependencies": {
-    "lucide-react-native": "^0.562.0"
-  },
-  "devDependencies": {
-    "@repo/typescript-config": "*",
-    "tsup": "^8.5.1"
-  },
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
+  },
+  "dependencies": {
+    "lucide-react-native": "^0.562.0"
   }
 }
