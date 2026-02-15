@@ -3,7 +3,7 @@
 // Nav.web.tsx
 "use client";
 import React, { useState } from "react";
-import { AuthButton } from "../auth/AuthButton";
+import  AuthButton  from "../auth/AuthButton";
 
 const navItems = [
   { id: "dashboard", label: "Pulpit" },
