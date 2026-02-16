@@ -13,7 +13,7 @@ const navItems = [
 
 export default function Nav() {
   const [activePage, setActivePage] = useState("dashboard");
-  const [showSearch, setShowSearch] = useState(false);
+  const [showSearch, ] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   return (

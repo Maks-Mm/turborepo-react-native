@@ -10,7 +10,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { useAuth } from '@repo/auth';
-import { useRouter, Link } from 'expo-router';
+import {  Link } from 'expo-router';
 
 
 

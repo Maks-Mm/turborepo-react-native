@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "lucide-react-native": "^0.562.0"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^19.2.3"
   }
 }

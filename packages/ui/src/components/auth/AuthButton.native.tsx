@@ -17,7 +17,7 @@ const useSafeAuth = () => {
 
  function AuthButton() {
   const { user, loading, logout } = useSafeAuth();
-  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [ ,setShowAuthModal] = useState(false);
 
   const styles = {
     container: {
