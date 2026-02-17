@@ -1,10 +1,10 @@
 // apps/native/app/index.tsx (NATIVE)
 import { View, ScrollView } from 'react-native';
-import { Header, Hero, Footer, Section,Nav } from '@repo/ui'; // Native components
+import { Header, Footer, Hero, Section, Nav } from '@repo/ui'; // Native components
 
 export default function HomeScreen() {
   return (
-     <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <Header />
       <Nav /> {/* NOW WORKS */}
       <ScrollView>
