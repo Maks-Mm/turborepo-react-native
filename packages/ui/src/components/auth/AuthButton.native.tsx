@@ -3,6 +3,7 @@ import { useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, Modal } from 'react-native';
 import { AuthModal } from "./AuthModal.native";
 import { StyleSheet } from 'react-native';
+import { useRouter } from "expo-router";
 
 const useSafeAuth = () => {
   try {
@@ -11,10 +12,15 @@ const useSafeAuth = () => {
   } catch (error) {
     console.warn('Auth not available, using fallback');
     return { user: null, loading: false, logout: () => { } };
+
+
   }
 };
 
 export default function AuthButton() {
+
+
+  const router = useRouter();
   const { user, loading, logout } = useSafeAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
@@ -60,7 +66,14 @@ export default function AuthButton() {
         animationType="slide"
         onRequestClose={() => setShowAuthModal(false)}
       >
-        <AuthModal onClose={() => setShowAuthModal(false)} />
+        <AuthModal
+          onClose={() => setShowAuthModal(false)}
+          onSuccess={() => {
+            setShowAuthModal(false);
+            router.replace('/dashboard'); // Navigate to dashboard after login
+          }}
+        />
+
       </Modal>
     </View>
   );

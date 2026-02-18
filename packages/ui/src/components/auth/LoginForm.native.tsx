@@ -15,19 +15,16 @@ import {  Link } from 'expo-router';
 
 
 function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
-  //const router = useRouter();
+  const { login } = useAuth();
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login } = useAuth();
 
-  const handleSubmit = async () => {
-    setError('');
+   const handleSubmit = async () => {
     try {
       await login(email, password);
       onSuccess?.();
-     // router.replace('/dashboard');
     } catch {
       setError('Invalid credentials');
       Alert.alert('Error', 'Invalid credentials');

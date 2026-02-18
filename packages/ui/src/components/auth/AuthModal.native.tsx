@@ -13,9 +13,10 @@ import { RegisterForm } from './RegisterForm.native';
 
 interface AuthModalProps {
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
-export function AuthModal({ onClose }: AuthModalProps) {
+export function AuthModal({ onClose, onSuccess }: AuthModalProps) {
   const [mode, setMode] = useState<'login' | 'register'>('login');
 
   return (
@@ -49,7 +50,7 @@ export function AuthModal({ onClose }: AuthModalProps) {
             </TouchableOpacity>
           </View>
 
-          {mode === 'login' ? <LoginForm /> : <RegisterForm />}
+          {mode === 'login' ? <LoginForm onSuccess={onSuccess} /> : <RegisterForm />}
         </View>
       </View>
     </Modal>
