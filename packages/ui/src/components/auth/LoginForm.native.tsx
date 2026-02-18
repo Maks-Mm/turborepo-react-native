@@ -1,4 +1,4 @@
-//packages/ui/src/components/auth/LOginForm.native.tsx
+// packages/ui/src/components/auth/LoginForm.native.tsx
 
 import { useState } from 'react';
 import {
@@ -10,91 +10,87 @@ import {
   StyleSheet,
 } from 'react-native';
 import { useAuth } from '@repo/auth';
-import {  Link } from 'expo-router';
+import { Link } from 'expo-router';
 
-
-
-function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
-  const { login } = useAuth();
-  
+// Make sure it's exported as default
+export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { login, loading } = useAuth();
 
-   const handleSubmit = async () => {
+  const handleSubmit = async () => {
+    setError('');
+    
     try {
       await login(email, password);
       onSuccess?.();
-    } catch {
-      setError('Invalid credentials');
-      Alert.alert('Error', 'Invalid credentials');
+    } catch (err) {
+      setError('Login failed. Please check your credentials.');
+      Alert.alert('Error', 'Login failed. Please check your credentials.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Logowanie</Text>
-
-      <View style={styles.form}>
-        <View>
-          <Text style={styles.label}>Email</Text>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            style={styles.input}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-        </View>
-
-        <View>
-          <Text style={styles.label}>Password</Text>
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            style={styles.input}
-            secureTextEntry
-          />
-        </View>
-
-        {error ? <Text style={styles.error}>{error}</Text> : null}
-
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+      <View style={styles.inputGroup}>
+        <Text style={styles.label}>Email</Text>
+        <TextInput
+          style={[styles.input, loading && styles.inputDisabled]}
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Enter your email"
+          placeholderTextColor="#9ca3af"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          editable={!loading}
+        />
       </View>
 
-      <Text style={styles.footerText}>
-        Nie masz konta?{' '}
-        <Link href="/register" style={styles.link}>
-          Zarejestruj się
-        </Link>
-      </Text>
+      <View style={styles.inputGroup}>
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={[styles.input, loading && styles.inputDisabled]}
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Enter your password"
+          placeholderTextColor="#9ca3af"
+          secureTextEntry
+          autoCapitalize="none"
+          editable={!loading}
+        />
+      </View>
+
+      {error ? <Text style={styles.error}>{error}</Text> : null}
+
+      <TouchableOpacity
+        style={[styles.button, loading && styles.buttonDisabled]}
+        onPress={handleSubmit}
+        disabled={loading}
+        activeOpacity={0.7}>
+        <Text style={styles.buttonText}>
+          {loading ? 'Logging in...' : 'Login'}
+        </Text>
+      </TouchableOpacity>
+
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          Don't have an account?{' '}
+          <Link href="/register" style={styles.link}>
+            Register
+          </Link>
+        </Text>
+      </View>
     </View>
   );
 }
 
-export default LoginForm;
-
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    maxWidth: 420,
-    padding: 24,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    alignSelf: 'center',
-    marginTop: 40,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#111827',
-  },
-  form: {
-    marginTop: 24,
     gap: 16,
+  },
+  inputGroup: {
+    gap: 4,
   },
   label: {
     fontSize: 14,
@@ -103,28 +99,45 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   input: {
-    padding: 10,
+    width: '100%',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     borderWidth: 1,
     borderColor: '#d1d5db',
     borderRadius: 6,
+    fontSize: 16,
+    color: '#111827',
+    backgroundColor: '#fff',
+  },
+  inputDisabled: {
+    backgroundColor: '#f3f4f6',
   },
   error: {
     color: '#dc2626',
     fontSize: 14,
+    marginTop: 4,
   },
   button: {
     backgroundColor: '#2563eb',
-    padding: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     borderRadius: 6,
+    marginTop: 8,
+  },
+  buttonDisabled: {
+    opacity: 0.5,
   },
   buttonText: {
     color: '#fff',
     textAlign: 'center',
     fontWeight: '600',
+    fontSize: 16,
+  },
+  footer: {
+    marginTop: 20,
+    alignItems: 'center',
   },
   footerText: {
-    textAlign: 'center',
-    marginTop: 20,
     fontSize: 14,
     color: '#4b5563',
   },
