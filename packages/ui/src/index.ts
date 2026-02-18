@@ -7,6 +7,6 @@ export { default as Section } from "./components/Section/Section";
 export { default as Footer } from "./components/Footer/Footer";
 export { default as AuthButton } from "./components/auth/AuthButton"
 export { default as LoginForm} from './components/auth/LoginForm'
-export { RegisterForm } from "./components/auth/RegisterForm";
+export { RegisterForm } from "./components/auth/RegisterForm.web";
 
 

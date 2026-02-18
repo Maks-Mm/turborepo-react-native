@@ -1,6 +1,5 @@
-//apps/native/auth/LoginForm.native.tsx
-
 // apps/native/auth/LoginForm.native.tsx
+"use client";
 import React, { useState } from 'react';
 import {
   View,
@@ -13,7 +12,7 @@ import {
 import { useAuth } from '@repo/auth';
 import { useRouter } from 'expo-router';
 
-export function NativeLoginForm() {
+export  default function NativeLoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');

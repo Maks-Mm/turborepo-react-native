@@ -6,7 +6,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import LoginForm from "./LoginForm.web";
-import { RegisterForm } from "./RegisterForm";
+import { RegisterForm } from "./RegisterForm.web";
 
 interface AuthModalProps {
   onClose: () => void;

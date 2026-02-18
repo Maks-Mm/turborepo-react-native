@@ -1,7 +1,7 @@
  //apps/native/app/(auth)/login.tsx
 
 import { View, Text, StyleSheet } from 'react-native';
-import { NativeLoginForm } from '../../auth/LoginForm.native';
+import { NativeLoginForm } from 'auth';
 
 function LoginScreen() {
   return (
