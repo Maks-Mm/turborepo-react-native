@@ -24,7 +24,7 @@ import {
 
 // Correct import - use native styles
 import { styles } from './styles.native'; // NOT styles.web!
-import { AuthButton } from '../auth/AuthButton.native'; // Add this import
+import  AuthButton  from '../auth/AuthButton.native'; // Add this import
 
 const HeaderNative = () => {
   

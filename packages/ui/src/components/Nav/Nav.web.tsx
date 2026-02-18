@@ -2,7 +2,7 @@
 
 // Nav.web.tsx
 "use client";
-import React, { useState } from "react";
+import  { useState } from "react";
 import  AuthButton  from "../auth/AuthButton";
 
 const navItems = [
