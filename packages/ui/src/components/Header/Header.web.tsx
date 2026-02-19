@@ -1,8 +1,10 @@
 //packages/ui/src/components/Header.web.tsx
-
 "use client";
+
 import { useState } from "react";
 import { headerStyles as s } from "./styles.web";
+import { RxAvatar } from "react-icons/rx";
+
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -10,7 +12,6 @@ const Header = () => {
   return (
     <header style={s.header}>
       <div style={s.container}>
-
         {/* Logo */}
         <div style={s.logoWrapper}>
           <div style={s.logoBox}>D</div>
@@ -24,7 +25,6 @@ const Header = () => {
 
         {/* Actions */}
         <div style={s.actions}>
-
           {/* Language */}
           <div style={{ position: "relative" }}>
             <button style={s.button} onClick={() => setOpen(!open)}>
@@ -40,14 +40,25 @@ const Header = () => {
             )}
           </div>
 
-          {/* User */}
-          <div>
-            <strong>Jan Kowalski</strong>
-            <div style={{ fontSize: 12, color: "#6b7280" }}>
-              Einzelunternehmer
-            </div>
+          {/* Avatar */}
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: 16,
+              background: "#DBEAFE",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 700,
+              color: "#2563EB",
+            }}
+          >
+            <RxAvatar size={20} />
           </div>
 
+          {/* Notifications */}
+          <button style={s.button}>🔔</button>
         </div>
       </div>
     </header>

@@ -1,7 +1,7 @@
 //packages/ui/src/components/Header.native.tsx
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,35 +9,15 @@ import {
   Modal,
   ScrollView,
   Pressable,
-} from 'react-native';
-import {
-  Globe,
-  Bell,
-  Calendar,
-  FileText,
-  HelpCircle,
-  User,
-  ChevronDown,
-  Menu,
-  X,
-} from 'lucide-react-native';
-
-// Correct import - use native styles
-import { styles } from './styles.native'; // NOT styles.web!
-import  AuthButton  from '../auth/AuthButton.native'; // Add this import
+} from "react-native";
+import { Globe, Bell, Menu, X } from "lucide-react-native";
+import { styles } from "./styles.native";
+import { User } from "lucide-react-native";
+//import AuthButton from "../auth/AuthButton.native";
 
 const HeaderNative = () => {
-  
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
-
-  const navigationItems = [
-    { id: 'dashboard', label: 'Pulpit', icon: <FileText size={18} /> },
-    { id: 'calendar', label: 'Kalendarz', icon: <Calendar size={18} /> },
-    { id: 'documents', label: 'Dokumenty', icon: <FileText size={18} /> },
-    { id: 'knowledge', label: 'Wiedza', icon: <HelpCircle size={18} /> },
-    { id: 'experts', label: 'Eksperci', icon: <User size={18} /> },
-  ];
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [languageOpen, setLanguageOpen] = useState(false);
 
   return (
     <View style={styles.header}>
@@ -57,30 +37,43 @@ const HeaderNative = () => {
 
         {/* Actions */}
         <View style={styles.actionsContainer}>
+          {/* Language */}
           <TouchableOpacity
             style={styles.languageButton}
-            onPress={() => setShowLanguageDropdown(!showLanguageDropdown)}
+            onPress={() => setLanguageOpen(true)}
           >
             <Globe size={16} color="#4B5563" />
             <Text style={styles.languageText}>🇵🇱</Text>
-            <ChevronDown size={16} color="#4B5563" />
           </TouchableOpacity>
 
-          {/* ✅ ADDED AUTH BUTTON HERE */}
-          <AuthButton />
+          {/* Avatar */}
+          <View
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: 16,
+              backgroundColor: "#DBEAFE",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ color: "#2563EB", fontWeight: "bold" }}>
 
+              <User size={20} color="#2563EB" />
+            </Text>
+          </View>
+
+          {/* Notifications */}
           <TouchableOpacity style={styles.notificationButton}>
             <Bell size={20} color="#4B5563" />
-            <View style={styles.badge}>
-              <Text style={styles.badgeText}>3</Text>
-            </View>
           </TouchableOpacity>
 
+          {/* Menu */}
           <TouchableOpacity
-            onPress={() => setIsMenuOpen(!isMenuOpen)}
+            onPress={() => setMenuOpen(!menuOpen)}
             style={styles.menuButton}
           >
-            {isMenuOpen ? (
+            {menuOpen ? (
               <X size={24} color="#4B5563" />
             ) : (
               <Menu size={24} color="#4B5563" />
@@ -89,35 +82,14 @@ const HeaderNative = () => {
         </View>
       </View>
 
-      {isMenuOpen && (
-        <View style={styles.mobileMenu}>
-          <ScrollView>
-            {navigationItems.map(item => (
-              <TouchableOpacity
-                key={item.id}
-                style={styles.menuItem}
-                onPress={() => setIsMenuOpen(false)}
-              >
-                <View style={styles.menuItemIcon}>{item.icon}</View>
-                <Text style={styles.menuItemText}>{item.label}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-      )}
-
-      <Modal
-        visible={showLanguageDropdown}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setShowLanguageDropdown(false)}
-      >
+      {/* Language Modal */}
+      <Modal visible={languageOpen} transparent animationType="fade">
         <Pressable
           style={styles.modalOverlay}
-          onPress={() => setShowLanguageDropdown(false)}
+          onPress={() => setLanguageOpen(false)}
         >
           <View style={styles.languageDropdown}>
-            {['🇵🇱 Polski', '🇩🇪 Deutsch', '🇬🇧 English'].map(lang => (
+            {["🇵🇱 Polski", "🇩🇪 Deutsch", "🇬🇧 English"].map((lang) => (
               <TouchableOpacity key={lang} style={styles.languageOption}>
                 <Text style={styles.languageOptionText}>{lang}</Text>
               </TouchableOpacity>
