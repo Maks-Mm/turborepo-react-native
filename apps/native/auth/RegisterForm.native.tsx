@@ -1,4 +1,5 @@
 // apps/native/auth/RegisterForm.native.tsx
+"use client";
 import React, { useState } from 'react';
 import {
   View,

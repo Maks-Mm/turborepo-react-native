@@ -1,7 +1,7 @@
 // packages/auth/src/AuthContext.tsx
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { ReactNode, useState, useEffect, createContext, useContext } from 'react';
 
 interface User {
   id: string;

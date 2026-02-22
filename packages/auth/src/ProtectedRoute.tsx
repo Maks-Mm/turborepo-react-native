@@ -1,7 +1,4 @@
 //packages/auth/rsc/ProtectedRoute.tsx
-
-
-// apps/web/app/components/ProtectedRoute.tsx
 'use client';
 
 import { useEffect } from 'react';

@@ -1,4 +1,5 @@
 // packages/ui/src/components/Section.tsx
+"use client";
 import React from "react";
 
 // Define the Feature type

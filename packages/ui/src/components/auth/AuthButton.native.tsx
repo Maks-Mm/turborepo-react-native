@@ -1,4 +1,5 @@
 // packages/ui/src/components/auth/AuthButton.native.tsx
+"use client";
 import { useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, Modal } from 'react-native';
 import { AuthModal } from "./AuthModal.native";

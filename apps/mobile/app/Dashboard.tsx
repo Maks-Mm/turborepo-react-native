@@ -1,5 +1,5 @@
 //app/mobile/app/Dashboard.tsx
-
+"use client";
 import { View, Text } from "react-native";
 import { useEffect, useState } from "react";
 import { fetchDeadlines } from "@repo/api-client";

@@ -1,4 +1,5 @@
 //packages/ui/src/components/Nav/Nav.native.tsx
+"use client";
 import React, { useState } from "react";
 import { View, Text, Pressable, TextInput, StyleSheet } from "react-native";
 import  AuthButton  from "../auth/AuthButton";

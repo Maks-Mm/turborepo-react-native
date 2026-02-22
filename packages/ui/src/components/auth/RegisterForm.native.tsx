@@ -1,7 +1,5 @@
 // packages/ui/src/components/auth/RegisterForm.native.tsx
-
-// packages/ui/src/components/auth/RegisterForm.native.tsx
-
+"use client";
 import { useState } from 'react';
 import {
   View,

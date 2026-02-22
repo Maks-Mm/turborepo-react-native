@@ -3,7 +3,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { subscribeToAuth } from '@repo/auth/src/actions';
+import { subscribeToAuth } from '@repo/auth';
 import { User } from 'firebase/auth';
 
 interface AuthContextProps {

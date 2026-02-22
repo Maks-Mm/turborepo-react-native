@@ -1,5 +1,5 @@
 // packages/ui/src/components/auth/AuthModal.native.tsx
-
+"use client";
 import { useState } from 'react';
 import {
   View,

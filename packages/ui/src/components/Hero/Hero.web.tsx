@@ -1,5 +1,4 @@
 //packages/ui/src/components/Hero/Hero.web.tsx
-
 "use client";
 import React, { useEffect, useRef } from "react";
 

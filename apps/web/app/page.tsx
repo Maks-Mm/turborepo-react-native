@@ -1,5 +1,4 @@
 // apps/web/app/page.tsx (WEB)
-'use client';
 import { Header, Nav, Hero, Footer, Section, LanguageProvider } from "@repo/ui"; // Default (web)
 
 export default function Web() {

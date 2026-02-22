@@ -4,9 +4,13 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: ['src/index.ts'],
   format: ['cjs', 'esm'],
-  external: ['react', 'react-dom', 'firebase', 'firebase/auth'],
-  dts: true,                    
-  splitting: false,
+  dts: true,
   sourcemap: true,
   clean: true,
+  external: [
+    'react',
+    'react-dom',
+    'firebase',
+    'react-firebase-hooks'
+  ]
 });

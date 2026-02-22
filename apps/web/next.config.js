@@ -1,6 +1,5 @@
 // apps/web/next.config.js
 
-//** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: [
     '@repo/ui',
