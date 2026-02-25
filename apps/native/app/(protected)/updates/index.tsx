@@ -1,0 +1,1 @@
+//apps/native/app(protected)/updates/index.tsx
