@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  name             String?
+  language         String   @default("pl")
+  businessType     String?
+  businessStartDate DateTime?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  deadlines        Deadline[]
+  documents        Document[]
+  messages         Message[]
+  bookings         ConsultingBooking[]
+}
+
+model Deadline {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  dueDate     DateTime
+  type        String   // "vat", "tax", "ihk", "health-insurance", etc.
+  isCompleted Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([dueDate])
+}
+
+model Document {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type             String   // "invoice", "contract", "tax-document", etc.
+  status           String   @default("pending") // "pending", "analyzed", "error"
+  fileUrl          String?
+  analyzedByPython Boolean  @default(false)
+  analysisResult   Json?    // OCR-Ergebnisse als JSON
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content     String
+  senderType  String   // "user", "consultant", "system"
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model ConsultingBooking {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  consultantId String   // ID des Beraters (später eigenes Model)
+  date         DateTime
+  status       String   @default("pending") // "pending", "confirmed", "cancelled", "completed"
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([userId])
+  @@index([consultantId])
+  @@index([date])
+}
+
+model TaxUpdate {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  category    String   // "vat", "income-tax", "trade-tax", etc.
+  source      String   // "finanzamt", "ihk", "bundesanzeiger", etc.
+  publishedAt DateTime
+  createdAt   DateTime @default(now())
+
+  @@index([category])
+  @@index([publishedAt])
+}

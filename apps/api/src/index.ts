@@ -1,15 +1,18 @@
 //apps/api/src/index.ts
 
-import express from "express";
-import { getDeadlinesForUser } from "@repo/deadlines";
+import express from 'express';
+import deadlinesRouter from './routes/deadlines.js';
+import dashboardRouter from './routes/dashboard.js'; // 👈 NEU
 
 const app = express();
 
-app.get("/deadlines", (req, res) => {
-  const deadlines = getDeadlinesForUser();
-  res.json(deadlines);
-});
+app.use(express.json());
 
-app.listen(3001, () => {
-  console.log("API running on 3001");
+// Routes
+app.use('/api/deadlines', deadlinesRouter);
+app.use('/api/dashboard', dashboardRouter); // 👈 NEU
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`API running on port ${PORT}`);
 });
