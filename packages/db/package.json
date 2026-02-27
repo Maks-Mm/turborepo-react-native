@@ -11,10 +11,11 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@prisma/client": "^5.0.0"
-  },
-  "devDependencies": {
-    "tsup": "^8.0.0",
-    "typescript": "^5.0.0"
-  }
+  "@prisma/client": "^7.4.1"
+},
+"devDependencies": {
+  "prisma": "^7.4.1",
+  "tsup": "^8.0.0",
+  "typescript": "^5.0.0"
+}
 }

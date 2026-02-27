@@ -1,42 +1,28 @@
+// packages/db/prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 model User {
-  id               String   @id @default(cuid())
-  email            String   @unique
-  name             String?
-  language         String   @default("pl")
-  businessType     String?
-  businessStartDate DateTime?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-
-  deadlines        Deadline[]
-  documents        Document[]
-  messages         Message[]
-  bookings         ConsultingBooking[]
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  deadlines Deadline[]
+  documents Document[]
+  messages  Message[]
 }
 
 model Deadline {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title       String
-  description String?
-  dueDate     DateTime
-  type        String   // "vat", "tax", "ihk", "health-insurance", etc.
-  isCompleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([userId])
-  @@index([dueDate])
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+  title    String
+  dueDate  DateTime
 }
 
 model Document {
