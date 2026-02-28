@@ -15,6 +15,7 @@ model User {
   deadlines Deadline[]
   documents Document[]
   messages  Message[]
+  consultingBookings ConsultingBooking[]
 }
 
 model Deadline {

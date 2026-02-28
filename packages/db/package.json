@@ -1,9 +1,9 @@
 {
   "name": "@repo/db",
-  "version": "0.0.1",
   "private": true,
   "type": "module",
   "main": "dist/index.js",
+  "version": "0.0.1",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -11,11 +11,11 @@
     "build": "tsup"
   },
   "dependencies": {
-  "@prisma/client": "^7.4.1"
-},
-"devDependencies": {
-  "prisma": "^7.4.1",
-  "tsup": "^8.0.0",
-  "typescript": "^5.0.0"
-}
+      "@prisma/client": "7.4.2"
+  },
+  "devDependencies": {
+    "prisma": "^7.4.2",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
 }

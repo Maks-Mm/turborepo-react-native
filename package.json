@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@types/minimatch": "^6.0.0",
+    "prisma": "7.4.1",
     "minimatch": "^10.2.2",
     "prettier": "^3.1.1",
     "tsup": "^8.5.1",
@@ -26,8 +27,7 @@
     "lucide-react-native": "^0.562.0",
     "nativewind": "^4.2.1",
     "react-native-svg": "^15.15.1"
-  }
-  ,
+  },
   "resolutions": {
     "@types/react": "18.3.14",
     "@types/react-dom": "18.3.6",
