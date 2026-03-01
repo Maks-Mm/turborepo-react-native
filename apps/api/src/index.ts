@@ -12,7 +12,7 @@ app.use(express.json());
 app.use('/api/deadlines', deadlinesRouter);
 app.use('/api/dashboard', dashboardRouter); // 👈 NEU
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`API running on port ${PORT}`);
 });

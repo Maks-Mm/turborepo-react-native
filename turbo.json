@@ -1,4 +1,5 @@
 {
+  "$schema": "https://turborepo.org/schema.json",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -7,11 +8,17 @@
     "dev": {
       "cache": false
     },
-    "@repo/types#build": {
+    "@repo/db#dev": {
       "outputs": ["dist/**"]
     },
-    "@repo/typescript-config#build": {
-      "outputs": ["dist/**"]
+    "api#dev": {
+      "dependsOn": ["^dev", "@repo/db#dev"]
+    },
+    "web#dev": {
+      "dependsOn": ["^dev", "api#dev"]
+    },
+    "native#dev": {
+      "dependsOn": ["^dev", "api#dev"]
     }
   }
 }
