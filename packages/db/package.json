@@ -4,17 +4,19 @@
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",   
+  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "tsup --watch --dts", 
-    "build": "tsup --dts"        
+    "dev": "tsup --watch --dts",
+    "build": "tsup --dts"
   },
   "dependencies": {
-    "@prisma/client": "7.4.2"
+    "@prisma/client": "^7.4.2"
   },
   "devDependencies": {
     "prisma": "^7.4.2",
     "tsup": "^8.5.1",
     "typescript": "^5.0.0"
-  }
+  },
+  "version": "1.0.0",
+  "license": "MIT"
 }
