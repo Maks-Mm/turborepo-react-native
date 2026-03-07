@@ -1,11 +1,10 @@
-//packages/db/tsup.config.ts
-
+// packages/db/tsup.config.ts
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: ['src/index.ts'],
-  format: ['esm'], // <-- ensure ESM output
+  format: ['esm'],
   dts: true,
-  sourcemap: true,
+  external: ['@prisma/client'], // important
   clean: true,
 });
