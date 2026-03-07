@@ -1,7 +1,6 @@
 //apps/api/src/routes/dashboard.ts
 
 import { Router } from 'express';
-//import { prisma } from '@repo/db';
 import db from '@repo/db';
 
 const router = Router();
@@ -13,7 +12,6 @@ router.get('/:userId', async (req, res) => {
 
     const today = new Date();
 
-    // 🔥 Parallel statt 4x nacheinander
     const [
       openDeadlines,
       pendingDocuments,

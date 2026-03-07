@@ -1,13 +1,11 @@
 //apps/api/routes/deadlines.ts
 
 import { Router } from 'express';
-//import { prisma } from '@repo/db';
 import db from '@repo/db';
 
 const { prisma } = db;
 const router = Router();
 
-// Alle Deadlines eines Users holen
 router.get('/user/:userId', async (req, res) => {
   try {
     const deadlines = await prisma.deadline.findMany({
@@ -20,7 +18,6 @@ router.get('/user/:userId', async (req, res) => {
   }
 });
 
-// Neue Deadline erstellen
 router.post('/', async (req, res) => {
   try {
     const { userId, title, description, dueDate, type } = req.body;

@@ -1,6 +1,8 @@
 // packages/db/src/index.ts
-// packages/db/src/index.ts
-import prisma from '../prisma.config';
 
-export { prisma };
-export default prisma;
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
+
+export { prisma }
+export default prisma

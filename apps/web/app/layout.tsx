@@ -1,10 +1,8 @@
 //apps/web/app/layout.tsx
 
 import { AuthProvider } from '@repo/auth';
-import { Inter } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
@@ -13,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body className={inter.className}>
+      <body className={""}>
         <AuthProvider>
           {children}
         </AuthProvider>

@@ -12,7 +12,6 @@
     "start": "yarn dev"
   },
   "devDependencies": {
-    "@types/minimatch": "^6.0.0",
     "prettier": "^3.1.1",
     "prisma": "7.4.1",
     "tsup": "^8.5.1",
@@ -22,8 +21,16 @@
   "engines": {
     "node": ">=18"
   },
+  "compilerOptions": {
+  "baseUrl": ".",
+  "paths": {
+    "@repo/db": ["packages/db/src"],
+    "@repo/types": ["packages/types/src"]
+  }
+},
   "dependencies": {
     "lucide-react-native": "^0.562.0",
+    "minimatch": "^10.2.4",
     "nativewind": "^4.2.1",
     "react-native-svg": "^15.15.1"
   },

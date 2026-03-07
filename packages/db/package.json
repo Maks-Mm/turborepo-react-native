@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+   "files": ["dist"],
   "scripts": {
     "dev": "tsup --watch --dts",
     "build": "tsup --dts"
@@ -13,6 +14,7 @@
     "@prisma/client": "^7.4.2"
   },
   "devDependencies": {
+    "@types/react": "^19.2.14",
     "prisma": "^7.4.2",
     "tsup": "^8.5.1",
     "typescript": "^5.0.0"
