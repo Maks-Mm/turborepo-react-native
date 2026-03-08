@@ -1,6 +1,8 @@
 // apps/native/app/(protected)/dashboard/index.tsx
+"use client";
 import { useEffect, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
 
 interface DashboardStats {
   openDeadlines: number;
@@ -16,6 +18,7 @@ interface DashboardStats {
 export default function DashboardScreen() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     fetchDashboardStats();
@@ -48,7 +51,11 @@ export default function DashboardScreen() {
       {/* Stats Grid */}
       <View style={styles.grid}>
         {/* Deadlines */}
-        <TouchableOpacity style={[styles.card, styles.blueCard]}>
+
+        <TouchableOpacity
+          style={[styles.card, styles.blueCard]}
+          onPress={() => router.push('/deadlines')}
+        >
           <View style={styles.cardHeader}>
             <Text style={styles.cardIcon}>📅</Text>
             <Text style={styles.cardCount}>{stats?.openDeadlines || 0}</Text>

@@ -1,6 +1,5 @@
 //packages/ui/src/components/Nav/Nav.web.tsx
 
-// Nav.web.tsx
 "use client";
 import  { useState } from "react";
 import  AuthButton  from "../auth/AuthButton";
