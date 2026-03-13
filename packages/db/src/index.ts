@@ -1,13 +1,15 @@
-// packages/db/src/index.ts
-import * as PrismaPkg from "@prisma/client";
+//packages/db/src/index.ts
 
-const PrismaClient = (PrismaPkg as any).PrismaClient;
+import { PrismaClient } from "@prisma/client"
+import dotenv from "dotenv"
 
-const globalForPrisma = globalThis as any;
+dotenv.config()
+
+const globalForPrisma = globalThis as any
 
 export const prisma =
-  globalForPrisma.prisma ?? new PrismaClient();
+  globalForPrisma.prisma ?? new PrismaClient()
 
 if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = prisma;
+  globalForPrisma.prisma = prisma
 }

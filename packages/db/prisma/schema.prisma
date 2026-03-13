@@ -1,5 +1,6 @@
 // packages/db/prisma/schema.prisma
 
+
 datasource db {
   provider = "postgresql"
 }
@@ -30,11 +31,11 @@ model Document {
   id               String   @id @default(cuid())
   userId           String
   user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  type             String   // "invoice", "contract", "tax-document", etc.
-  status           String   @default("pending") // "pending", "analyzed", "error"
+  type             String
+  status           String   @default("pending")
   fileUrl          String?
   analyzedByPython Boolean  @default(false)
-  analysisResult   Json?    // OCR-Ergebnisse als JSON
+  analysisResult   Json?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 
@@ -47,7 +48,7 @@ model Message {
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   content     String
-  senderType  String   // "user", "consultant", "system"
+  senderType  String
   isRead      Boolean  @default(false)
   createdAt   DateTime @default(now())
 
@@ -59,9 +60,9 @@ model ConsultingBooking {
   id           String   @id @default(cuid())
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  consultantId String   // ID des Beraters (später eigenes Model)
+  consultantId String
   date         DateTime
-  status       String   @default("pending") // "pending", "confirmed", "cancelled", "completed"
+  status       String   @default("pending")
   notes        String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -74,12 +75,10 @@ model ConsultingBooking {
 model TaxUpdate {
   id          String   @id @default(cuid())
   title       String
-  content     String
-  category    String   // "vat", "income-tax", "trade-tax", etc.
-  source      String   // "finanzamt", "ihk", "bundesanzeiger", etc.
+  content     String?
+  category    String
+  source      String
+  sourceUrl   String?
   publishedAt DateTime
   createdAt   DateTime @default(now())
-
-  @@index([category])
-  @@index([publishedAt])
 }

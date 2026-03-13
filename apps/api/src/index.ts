@@ -1,7 +1,7 @@
 //apps/api/src/index.ts
 
 import express from "express";
-
+import dotenv from "dotenv";
 import deadlinesRouter from "./routes/deadlines.js";
 import dashboardRouter from "./routes/dashboard.js";
 import documentsRouter from "./routes/documents.js";
@@ -21,6 +21,7 @@ app.use("/api/billing", billingRouter);
 app.use("/api/consulting", consultingRouter);
 app.use("/api/messages", messagesRouter);
 app.use("/api/updates", updatesRouter);
+dotenv.config({ path: "../../packages/db/.env" });
 
 const PORT = process.env.PORT || 4000;
 

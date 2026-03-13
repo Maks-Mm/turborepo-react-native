@@ -132,6 +132,7 @@ export default function ConsultingScreen() {
               <Text style={[styles.headerCell, styles.dateHeaderCell]}>Date</Text>
               <Text style={[styles.headerCell, styles.statusHeaderCell]}>Status</Text>
               <Text style={[styles.headerCell, styles.notesHeaderCell]}>Notes</Text>
+              <Text>Here is still to put locations of consulting centers like at google maps ,in depending to current place</Text>
             </View>
 
             {/* Table Body */}

@@ -1,1 +1,9 @@
-services/python-worker
+services/python-worker/requirements.tsx
+
+psycopg2-binary
+python-dotenv
+pytesseract
+Pillow
+feedparser
+requests
+beautifulsoup4
