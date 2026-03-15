@@ -73,7 +73,7 @@ model ConsultingBooking {
 }
 
 model TaxUpdate {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   title       String
   content     String?
   category    String
@@ -81,4 +81,8 @@ model TaxUpdate {
   sourceUrl   String?
   publishedAt DateTime
   createdAt   DateTime @default(now())
+
+  @@index([publishedAt])
+  @@index([category])
+  @@index([source])
 }
