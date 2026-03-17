@@ -1,0 +1,22 @@
+//services/api/src/jobs/fetchUpdates.ts
+
+import prisma from "@repo/db";
+
+export async function fetchUpdates() {
+  const mockData = [
+    {
+      title: "Neue Steuerregelung 2026",
+      content: "Details zur Reform...",
+      category: "Einkommensteuer",
+      source: "BMF",
+      sourceUrl: "https://www.bundesfinanzministerium.de",
+      publishedAt: new Date()
+    }
+  ];
+
+  for (const item of mockData) {
+    await prisma.taxUpdate.create({
+      data: item
+    });
+  }
+}

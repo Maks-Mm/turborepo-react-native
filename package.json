@@ -22,12 +22,16 @@
     "node": ">=18"
   },
   "compilerOptions": {
-  "baseUrl": ".",
-  "paths": {
-    "@repo/db": ["packages/db/src"],
-    "@repo/types": ["packages/types/src"]
-  }
-},
+    "baseUrl": ".",
+    "paths": {
+      "@repo/db": [
+        "packages/db/src"
+      ],
+      "@repo/types": [
+        "packages/types/src"
+      ]
+    }
+  },
   "dependencies": {
     "lucide-react-native": "^0.562.0",
     "minimatch": "^10.2.4",
