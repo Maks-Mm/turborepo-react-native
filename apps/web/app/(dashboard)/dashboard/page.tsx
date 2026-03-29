@@ -104,15 +104,15 @@ export default function DashboardPage() {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Link href="/documents/upload" className="bg-gray-100 p-4 rounded-2xl text-center hover:bg-gray-200 transition">
+        <Link href="/documents" className="bg-gray-100 p-4 rounded-2xl text-center hover:bg-gray-200 transition">
           <div className="text-3xl mb-2">📤</div>
           <div className="font-medium">Dokument hochladen</div>
         </Link>
-        <Link href="/deadlines/new" className="bg-gray-100 p-4 rounded-2xl text-center hover:bg-gray-200 transition">
+        <Link href="/deadlines" className="bg-gray-100 p-4 rounded-2xl text-center hover:bg-gray-200 transition">
           <div className="text-3xl mb-2">➕</div>
           <div className="font-medium">Neue Frist</div>
         </Link>
-        <Link href="/consulting/book" className="bg-gray-100 p-4 rounded-2xl text-center hover:bg-gray-200 transition">
+        <Link href="/consulting" className="bg-gray-100 p-4 rounded-2xl text-center hover:bg-gray-200 transition">
           <div className="text-3xl mb-2">📞</div>
           <div className="font-medium">Beratung buchen</div>
         </Link>

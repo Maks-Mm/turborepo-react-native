@@ -122,7 +122,7 @@ export default function DashboardScreen() {
         <View style={styles.actionsGrid}>
           <TouchableOpacity
             style={styles.actionCard}
-            onPress={() => router.push("/documents/upload")}
+            onPress={() => router.push("/documents")}
             activeOpacity={0.7}
           >
             <Text style={styles.actionIcon}>📤</Text>
@@ -131,7 +131,7 @@ export default function DashboardScreen() {
 
           <TouchableOpacity
             style={styles.actionCard}
-            onPress={() => router.push("/deadlines/new")}
+            onPress={() => router.push("/deadlines")}
             activeOpacity={0.7}
           >
             <Text style={styles.actionIcon}>➕</Text>
@@ -140,7 +140,7 @@ export default function DashboardScreen() {
 
           <TouchableOpacity
             style={styles.actionCard}
-            onPress={() => router.push("/consulting/book")}
+            onPress={() => router.push("/consulting")}
             activeOpacity={0.7}
           >
             <Text style={styles.actionIcon}>📞</Text>
