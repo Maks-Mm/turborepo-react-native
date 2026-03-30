@@ -1,6 +1,8 @@
 //package/api-client/src/index.ts
 
 
+export * from "./taxClient";
+
 import { Deadline } from "@repo/types";
 
 export async function fetchDeadlines(): Promise<Deadline[]> {

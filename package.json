@@ -2,8 +2,9 @@
   "name": "with-react-native-web",
   "private": true,
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "packages/*",
+    "services/*",
+    "apps/*"
   ],
   "scripts": {
     "dev": "turbo run dev",

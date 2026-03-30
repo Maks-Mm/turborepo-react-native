@@ -2,8 +2,7 @@
 
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "postgres"
 }
 
 generator client {
@@ -11,21 +10,27 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  deadlines Deadline[]
-  documents Document[]
-  messages  Message[]
+  id                 String               @id @default(cuid())
+  email              String               @unique
+  name               String?
+  deadlines          Deadline[]
+  documents          Document[]
+  messages           Message[]
   consultingBookings ConsultingBooking[]
 }
 
 model Deadline {
-  id       String   @id @default(cuid())
-  userId   String
-  user     User     @relation(fields: [userId], references: [id])
-  title    String
-  dueDate  DateTime
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  type        String?
+  dueDate     DateTime
+  isCompleted Boolean  @default(false)
+
+  @@index([userId])
+  @@index([dueDate])
 }
 
 model Document {
@@ -45,31 +50,30 @@ model Document {
 }
 
 model Message {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  content     String
-  senderType  String
-  isRead      Boolean  @default(false)
-  createdAt   DateTime @default(now())
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content    String
+  senderType String
+  isRead     Boolean  @default(false)
+  createdAt  DateTime @default(now())
 
   @@index([userId])
   @@index([createdAt])
 }
 
 model ConsultingBooking {
-  id           String   @id @default(cuid())
-  userId       String
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  consultantId String
-  date         DateTime
-  status       String   @default("pending")
-  notes        String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic     String
+  date      DateTime
+  status    String   @default("pending")
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
-  @@index([consultantId])
   @@index([date])
 }
 
@@ -86,4 +90,5 @@ model TaxUpdate {
   @@index([publishedAt])
   @@index([category])
   @@index([source])
+  @@unique([title, sourceUrl])
 }

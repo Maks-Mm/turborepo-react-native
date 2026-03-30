@@ -16,6 +16,15 @@ RSS_FEEDS = [
     }
 ]
 
+def normalize_entry(entry, feed):
+    return {
+        "title": entry.get("title"),
+        "category": feed["category"],
+        "source": feed["source"],
+        "sourceUrl": entry.get("link"),
+        "publishedAt": entry.get("published")
+    }
+
 def insert_update(title, category, source, url, published):
     conn = get_db_connection()
     cur = conn.cursor()
@@ -36,14 +45,12 @@ def check_tax_updates():
         parsed = feedparser.parse(feed["url"])
 
         for entry in parsed.entries:
-            title = entry.get("title")
-            link = entry.get("link")
-            published = entry.get("published")
+            normalized = normalize_entry(entry, feed)
 
             insert_update(
-                title,
-                feed["category"],
-                feed["source"],
-                link,
-                published
+                normalized["title"],
+                normalized["category"],
+                normalized["source"],
+                normalized["sourceUrl"],
+                normalized["publishedAt"]
             )

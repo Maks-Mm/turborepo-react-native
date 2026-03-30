@@ -2,9 +2,10 @@
 
 import { Router } from "express";
 import db from "@repo/db";
+import prisma from "@repo/db";
+
 
 const router = Router();
-const { prisma } = db;
 
 router.get("/sessions/:userId", async (req, res) => {
   try {

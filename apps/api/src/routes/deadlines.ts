@@ -2,8 +2,8 @@
 
 import { Router } from 'express';
 import db from '@repo/db';
+import prisma from "@repo/db";
 
-const { prisma } = db;
 const router = Router();
 
 router.get('/user/:userId', async (req, res) => {

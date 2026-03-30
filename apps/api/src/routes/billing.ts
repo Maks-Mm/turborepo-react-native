@@ -1,10 +1,9 @@
 //apps/api/src/routes/billing.ts
 
 import { Router } from "express";
-import db from "@repo/db";
+import prisma from "@repo/db";
 
 const router = Router();
-const { prisma } = db;
 
 router.get("/user/:userId", async (req, res) => {
   try {

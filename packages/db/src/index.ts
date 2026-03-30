@@ -1,18 +1,16 @@
 //packages/db/src/index.ts
 
+
 import { PrismaClient } from "@prisma/client";
-import dotenv from "dotenv";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-dotenv.config();
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL!,
+});
 
-const globalForPrisma = globalThis as any;
+export const prisma = new PrismaClient({
+  adapter,
+  log: ["query", "info", "warn", "error"],
+});
 
-const prisma = globalForPrisma.prisma ?? new PrismaClient();
-
-if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = prisma;
-}
-
-// Export the Prisma client directly, not wrapped in an object
 export default prisma;
-export * from "@prisma/client";

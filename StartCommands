@@ -5,3 +5,6 @@ yarn -  dev web
 yarn dev - server 
 
 for SQL data base - yarn prisma studio --url "postgresql://postgres:qwe1234@localhost:5432/turborepo_db?schema=public"  , port http://localhost:51212/ 
+
+
+packages\db> yarn dev
