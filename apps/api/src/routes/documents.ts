@@ -1,7 +1,6 @@
 //apps/api/src/routes/documents.ts
 
 import { Router } from "express";
-import db from "@repo/db";
 import prisma from "@repo/db";
 
 const router = Router();

@@ -1,7 +1,6 @@
 // apps/web/src/components/Consulting.tsx
 
 import { Router } from "express";
-import db from "@repo/db";
 import prisma from "@repo/db";
 
 

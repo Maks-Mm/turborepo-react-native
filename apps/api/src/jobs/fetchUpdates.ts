@@ -1,7 +1,6 @@
 //apps/api/src/jobs/fetchUpdates.ts
 
-import db from "@repo/db";
-const { prisma } = db;
+import prisma from "@repo/db";
 
 export async function fetchUpdates() {
   const mockData = [

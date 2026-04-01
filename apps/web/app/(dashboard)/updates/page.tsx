@@ -24,7 +24,7 @@ export default function UpdatesPage() {
   const fetchUpdates = async () => {
     try {
       // TODO: Replace with your actual API endpoint
-      const res = await fetch('http://localhost:3001/taxes/de');
+      const res = await fetch('http://localhost:3001/api/taxes/de');
       const data = await res.json();
       setUpdates(data);
     } catch (error) {
