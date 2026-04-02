@@ -13,8 +13,16 @@ import messagesRouter from "./routes/messages.js";
 import updatesRouter from "./routes/updates.js";
 import taxRouter from "./routes/tax.js";
 import { fetchUpdates } from "./jobs/fetchUpdates.js";
+import cors from 'cors';
+
 
 const app = express();
+
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:8081'], // allow your frontend origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
+}));
 
 app.use(express.json());
 
