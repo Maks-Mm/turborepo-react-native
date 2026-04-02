@@ -1,7 +1,7 @@
 // apps/web/src/components/Consulting.tsx
 
 import { Router } from "express";
-import prisma from "@repo/db";
+import prisma from "@repo/db"; // default import
 
 
 const router = Router();

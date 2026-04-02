@@ -1,6 +1,6 @@
 //apps/api/src/jobs/fetchUpdates.ts
 
-import prisma from "@repo/db";
+import prisma from "@repo/db"; // default import
 
 export async function fetchUpdates() {
   const mockData = [
@@ -15,8 +15,10 @@ export async function fetchUpdates() {
   ];
 
   for (const item of mockData) {
-    await prisma.taxUpdate.create({
-      data: item
+    await prisma.taxUpdate.upsert({
+      where: { title_sourceUrl: { title: item.title, sourceUrl: item.sourceUrl } },
+      update: {},
+      create: item,
     });
   }
 }

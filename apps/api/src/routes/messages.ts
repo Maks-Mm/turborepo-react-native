@@ -1,7 +1,7 @@
 //apps/api/src/routes/messages.ts
 
 import { Router } from "express";
-import prisma from "@repo/db";
+import prisma from "@repo/db"; // default import
 
 const router = Router();
 

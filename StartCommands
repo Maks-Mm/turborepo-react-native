@@ -8,3 +8,5 @@ for SQL data base - yarn prisma studio --url "postgresql://postgres:qwe1234@loca
 
 
 packages\db> yarn dev
+
+C:\Users\Maksym\Desktop\einFolder2\turborepo-react-native\apps\api> yarn dev 

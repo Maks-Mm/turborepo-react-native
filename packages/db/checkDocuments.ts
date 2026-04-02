@@ -1,6 +1,6 @@
 //packages/db/checkDocuments.ts
 
-import { prisma } from "@repo/db";
+import prisma from "@repo/db"; // default import
 
 async function main() {
   const documents = await prisma.document.findMany({
