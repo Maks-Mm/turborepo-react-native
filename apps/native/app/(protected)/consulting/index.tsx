@@ -1,4 +1,6 @@
-// apps/native/app/(protected)/consulting/index.tsx
+//apps/native/app/(protected)/consulting/index.tsx
+
+
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -9,33 +11,25 @@ import {
   Alert,
   RefreshControl,
   StyleSheet,
+  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
-
-interface Booking {
-  id: string;
-  consultantName: string;
-  date: string;
-  status: 'pending' | 'confirmed' | 'cancelled' | 'completed';
-  notes?: string;
-}
+// Remove useRouter since it's not used
+import { Booking } from '@repo/types';
+import { fetchBookings as fetchBookingsFromAPI } from '@repo/api-client'; // ✅ Renamed import
 
 export default function ConsultingScreen() {
-  const router = useRouter();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
-    fetchBookings();
+    loadBookings(); // ✅ Different name
   }, []);
 
-  const fetchBookings = async () => {
+  const loadBookings = async () => { // ✅ Different name
     try {
-      // TODO: replace with actual API endpoint and authentication
-      const res = await fetch('http://localhost:3001/api/consulting/user-123');
-      const data = await res.json();
+      const data = await fetchBookingsFromAPI("user-123"); // ✅ Use renamed import
       setBookings(data);
     } catch (error) {
       console.error('Failed to fetch bookings:', error);
@@ -48,12 +42,11 @@ export default function ConsultingScreen() {
 
   const onRefresh = () => {
     setRefreshing(true);
-    fetchBookings();
+    loadBookings(); // ✅ Use correct function name
   };
 
   const handleBookNew = () => {
-    // Navigate to booking screen
-    router.push('/consulting/book');
+    Alert.alert('Info', 'Booking feature coming soon');
   };
 
   const getStatusBadgeStyle = (status: string) => {
@@ -113,26 +106,20 @@ export default function ConsultingScreen() {
         }
       >
         <View style={styles.content}>
-          {/* Header */}
           <Text style={styles.headerTitle}>📞 Consulting Bookings</Text>
 
-          {/* Quick Action */}
-          <TouchableOpacity
-            onPress={handleBookNew}
-            style={styles.bookButton}
-          >
+          <TouchableOpacity onPress={handleBookNew} style={styles.bookButton}>
             <Text style={styles.bookButtonText}>Book New Consultation</Text>
           </TouchableOpacity>
 
-          {/* Bookings Table */}
           <View style={styles.tableContainer}>
-            {/* Table Header */}
+            {/* Table Header - WITH Location column */}
             <View style={styles.tableHeader}>
               <Text style={[styles.headerCell, styles.consultantHeaderCell]}>Consultant</Text>
               <Text style={[styles.headerCell, styles.dateHeaderCell]}>Date</Text>
               <Text style={[styles.headerCell, styles.statusHeaderCell]}>Status</Text>
+              <Text style={[styles.headerCell, styles.locationHeaderCell]}>Location</Text>
               <Text style={[styles.headerCell, styles.notesHeaderCell]}>Notes</Text>
-              <Text>Here is still to put locations of consulting centers like at google maps ,in depending to current place</Text>
             </View>
 
             {/* Table Body */}
@@ -149,6 +136,7 @@ export default function ConsultingScreen() {
                       `Consultant: ${booking.consultantName}\n` +
                       `Date: ${formatDate(booking.date)}\n` +
                       `Status: ${booking.status}\n` +
+                      `Location: ${booking.address?.fullAddress || 'No address'}\n` +
                       `Notes: ${booking.notes || 'No notes'}`
                     );
                   }}
@@ -170,6 +158,22 @@ export default function ConsultingScreen() {
                       </Text>
                     </View>
                   </View>
+                  {/* Location Cell with Google Maps link */}
+                  <View style={[styles.cellContainer, styles.locationCell]}>
+                    <Text
+                      style={[styles.cellText, styles.locationLink]}
+                      numberOfLines={1}
+                      onPress={() =>
+                        Linking.openURL(
+                          `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                            booking.address?.fullAddress || ''
+                          )}`
+                        )
+                      }
+                    >
+                      📍 {booking.address?.fullAddress || 'No address'}
+                    </Text>
+                  </View>
                   <View style={[styles.cellContainer, styles.notesCell]}>
                     <Text style={styles.cellText} numberOfLines={1}>
                       {booking.notes || '—'}
@@ -178,7 +182,6 @@ export default function ConsultingScreen() {
                 </TouchableOpacity>
               ))}
 
-              {/* Empty State */}
               {bookings.length === 0 && (
                 <View style={styles.emptyState}>
                   <Text style={styles.emptyStateText}>
@@ -251,16 +254,19 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
   consultantHeaderCell: {
-    width: '25%',
-  },
-  dateHeaderCell: {
-    width: '30%',
-  },
-  statusHeaderCell: {
     width: '20%',
   },
-  notesHeaderCell: {
+  dateHeaderCell: {
     width: '25%',
+  },
+  statusHeaderCell: {
+    width: '15%',
+  },
+  locationHeaderCell: {
+    width: '25%',
+  },
+  notesHeaderCell: {
+    width: '15%',
   },
   tableBody: {
     backgroundColor: 'white',
@@ -282,17 +288,24 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#1f2937',
   },
+  locationLink: {
+    color: '#2563eb',
+    textDecorationLine: 'underline',
+  },
   consultantCell: {
-    width: '25%',
-  },
-  dateCell: {
-    width: '30%',
-  },
-  statusCell: {
     width: '20%',
   },
-  notesCell: {
+  dateCell: {
     width: '25%',
+  },
+  statusCell: {
+    width: '15%',
+  },
+  locationCell: {
+    width: '25%',
+  },
+  notesCell: {
+    width: '15%',
   },
   statusBadge: {
     paddingHorizontal: 8,

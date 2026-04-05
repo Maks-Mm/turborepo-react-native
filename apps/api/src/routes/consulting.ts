@@ -1,40 +1,38 @@
-// apps/web/src/components/Consulting.tsx
+// apps/api/src/routes/consulting.ts
+
 
 import { Router } from "express";
-import prisma from "@repo/db"; // default import
-
 
 const router = Router();
 
-router.get("/sessions/:userId", async (req, res) => {
-  try {
-    const sessions = await prisma.consultingSession.findMany({
-      where: { userId: req.params.userId },
-      orderBy: { date: "asc" }
-    });
+router.get("/:userId", async (req, res) => {
+  const { userId } = req.params;
 
-    res.json(sessions);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch consulting sessions" });
-  }
-});
-
-router.post("/book", async (req, res) => {
-  try {
-    const { userId, date, topic } = req.body;
-
-    const session = await prisma.consultingSession.create({
-      data: {
-        userId,
-        topic,
-        date: new Date(date)
+  // TEMP MOCK DATA
+  const bookings = [
+    {
+      id: "1",
+      consultantName: "Dr. Schmidt",
+      date: new Date().toISOString(),
+      status: "confirmed",
+      notes: "Bring documents",
+      address: {
+        fullAddress: "Berlin, Alexanderplatz 1"
       }
-    });
+    },
+    {
+      id: "2",
+      consultantName: "Anna Kowalska",
+      date: new Date().toISOString(),
+      status: "pending",
+      notes: "",
+      address: {
+        fullAddress: "Warsaw, Marszałkowska 10"
+      }
+    }
+  ];
 
-    res.json(session);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to book session" });
-  }
+  res.json(bookings);
 });
 
 export default router;

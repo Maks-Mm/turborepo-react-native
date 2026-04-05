@@ -1,6 +1,7 @@
 //packages/type/src/index.ts
 
 export * from "./tax";
+export * from "./consulting";
 
 export type BusinessType = 'EINZELUNTERNEHMER' | 'GMBH';
 

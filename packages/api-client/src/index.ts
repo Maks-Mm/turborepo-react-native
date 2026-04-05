@@ -2,6 +2,7 @@
 
 
 export * from "./taxClient";
+export * from "./consultingClient";
 
 import { Deadline } from "@repo/types";
 

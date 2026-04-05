@@ -2,29 +2,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-
-interface Booking {
-  id: string;
-  consultantName: string;
-  date: string;
-  status: 'pending' | 'confirmed' | 'cancelled' | 'completed';
-  notes?: string;
-}
+// Remove Link since it's not used
+import { Booking } from '@repo/types';
+import { fetchBookings as fetchBookingsFromAPI } from '@repo/api-client'; // ✅ Renamed import
 
 export default function ConsultingPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchBookings();
+    loadBookings(); // ✅ Different name
   }, []);
 
-  const fetchBookings = async () => {
+  const loadBookings = async () => { // ✅ Different name
     try {
-      // TODO: replace with actual API endpoint and authentication
-      const res = await fetch('http://localhost:3001/api/consulting/user-123');
-      const data = await res.json();
+      const data = await fetchBookingsFromAPI("user-123"); // ✅ Use renamed import
       setBookings(data);
     } catch (error) {
       console.error('Failed to fetch bookings:', error);
@@ -45,17 +37,16 @@ export default function ConsultingPage() {
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">📞 Consulting Bookings</h1>
 
-      {/* Quick Action */}
+      {/* Quick Action - No broken link */}
       <div className="flex gap-4 mb-6">
-        <Link
-          href="/consulting/book"
+        <button
+          onClick={() => alert('Booking feature coming soon')}
           className="bg-blue-50 text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-100 transition"
         >
           Book New Consultation
-        </Link>
+        </button>
       </div>
 
-      {/* Bookings Table */}
       <div className="overflow-x-auto">
         <table className="w-full table-auto border border-gray-200 rounded-lg">
           <thead className="bg-gray-50">
@@ -63,6 +54,7 @@ export default function ConsultingPage() {
               <th className="px-4 py-2 text-left">Consultant</th>
               <th className="px-4 py-2 text-left">Date</th>
               <th className="px-4 py-2 text-left">Status</th>
+              <th className="px-4 py-2 text-left">Location</th>
               <th className="px-4 py-2 text-left">Notes</th>
             </tr>
           </thead>
@@ -86,12 +78,24 @@ export default function ConsultingPage() {
                     {b.status}
                   </span>
                 </td>
+                <td className="px-4 py-2">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                      b.address?.fullAddress || ''
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 underline hover:text-blue-800"
+                  >
+                    📍 {b.address?.fullAddress || 'No address'}
+                  </a>
+                </td>
                 <td className="px-4 py-2">{b.notes || '—'}</td>
               </tr>
             ))}
             {bookings.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-6 text-center text-gray-500">
+                <td colSpan={5} className="px-4 py-6 text-center text-gray-500">
                   No consulting bookings found.
                 </td>
               </tr>
