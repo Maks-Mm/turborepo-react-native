@@ -2,6 +2,7 @@
 
 const nextConfig = {
   transpilePackages: [
+    '@repo/api-client',  // ✅ Add this line
     '@repo/ui',
     '@repo/auth',
     'react-native',
