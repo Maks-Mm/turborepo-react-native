@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@repo/api-client": "*",
     "@repo/ui": "*",
     "@repo/auth": "*",
     "next": "^16.1.1",
