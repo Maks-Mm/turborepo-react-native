@@ -2,7 +2,8 @@
 
 import { Booking } from "@repo/types";
 
-const BASE_URL = "http://localhost:3001";
+// ✅ Use environment variable with fallback for local development
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export async function fetchBookings(userId: string): Promise<Booking[]> {
   const res = await fetch(`${BASE_URL}/api/consulting/${userId}`);
@@ -13,7 +14,6 @@ export async function fetchBookings(userId: string): Promise<Booking[]> {
 
   const data = await res.json();
   
-  // Validate that each booking has address
   if (!Array.isArray(data)) {
     throw new Error("Invalid response format");
   }
