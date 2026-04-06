@@ -14,6 +14,9 @@ import updatesRouter from "./routes/updates.js";
 import taxRouter from "./routes/tax.js";
 import { fetchUpdates } from "./jobs/fetchUpdates.js";
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 const app = express();

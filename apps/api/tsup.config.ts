@@ -6,7 +6,6 @@ export default defineConfig({
   format: ["cjs"],
   sourcemap: true,
   clean: true,
-  
   dts: false,
-  external: ["@repo/db", "express"]
+  external: []  // Remove external dependencies so they get bundled
 })
